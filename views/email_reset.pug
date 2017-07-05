@@ -4,7 +4,7 @@ block content
   div.col-md-8.col-md-offset-2
      br 
      div.panel.panel-default
-        div.panel-heading=login
+        div.panel-heading=reset
         div.panel-body
             form.form-horizontal(method='post',role='form')
               div.form-group
@@ -16,18 +16,10 @@ block content
                     name="email",
                     value=""
                     )
+
               div.form-group
-                label.col-md-4.control-label Password
-                div.col-md-6  
-                  input.form-control(type="password",
-                    placeholder="Your Password",
-                    required=true,
-                    name="password",
-                    value=""
-                    )
-              div.form-group
-                div.col-md-8.col-md-offset-4
-                  button.btn.btn-primary(type="submit") Login  
+                div.col-md-6.col-md-offset-4
+                    button.btn.btn-primary(type="submit") Send Password Reset Link  
                        
                            
  

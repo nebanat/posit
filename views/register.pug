@@ -1,0 +1,54 @@
+extends layout
+
+block content
+  div.col-md-8.col-md-offset-2
+     br 
+     div.panel.panel-default
+        div.panel-heading=register
+        div.panel-body
+            form.form-horizontal(method='post',role='form')
+              div.form-group
+                label.col-md-4.control-label Username
+                div.col-md-6
+                  input.form-control(type="text",
+                    placeholder="Your username",
+                    required=true,
+                    name="username",
+                    value=""
+                    )
+                div.form-group
+                label.col-md-4.control-label Email
+                div.col-md-6
+                  input.form-control(type="email",
+                    placeholder="Youremail@example.com",
+                    required=true,
+                    name="email",
+                    value=""
+                    )    
+              div.form-group
+                label.col-md-4.control-label Password
+                div.col-md-6  
+                  input.form-control(type="password",
+                    placeholder="Your Password",
+                    required=true,
+                    name="password",
+                    value=""
+                    )
+              div.form-group
+                label.col-md-4.control-label Retype Password
+                div.col-md-6  
+                  input.form-control(type="password",
+                    placeholder="Confirm Password",
+                    required=true,
+                    name="confirm_password",
+                    value=""
+                    )    
+              div.form-group
+                div.col-md-8.col-md-offset-4
+                   button.btn.btn-primary(type="submit") SignUp  
+                       
+                           
+ 
+
+
+
