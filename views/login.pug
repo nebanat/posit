@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  div.col-md-8.col-md-offset-2
+     br 
+     div.panel.panel-default
+        div.panel-heading=login
+        div.panel-body
+            form.form-horizontal(method='post',role='form')
+              div.form-group
+                label.col-md-4.control-label E-mail
+                div.col-md-6
+                  input.form-control(type="email",
+                    placeholder="youremail@example.com",
+                    required=true,
+                    name="email",
+                    value=""
+                    )
+              div.form-group
+                label.col-md-4.control-label Password
+                div.col-md-6  
+                  input.form-control(type="password",
+                    placeholder="Your Password",
+                    required=true,
+                    name="email",
+                    value=""
+                    )
+              div.form-group
+                div.col-md-8.col-md-offset-4
+                  div.checkbox
+                    button.btn.btn-primary(type="submit") Login  
+                       
+                           
+ 
+
+
+
