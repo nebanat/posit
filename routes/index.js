@@ -16,5 +16,10 @@ router.get('/password/reset', function(req, res, next) {
   res.render('email_reset', { reset:'Reset Password' });
 });
 
+/*route to create new group*/
+router.get('/new/group', function(req, res, next) {
+  res.render('new_group', { group:'Create New Group' });
+});
+
 
 module.exports = router;

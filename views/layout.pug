@@ -4,5 +4,14 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
   body
+    nav.navbar.navbar-default
+        div.container-fluid
+          div.navbar-header
+            a.navbar-brand(href="#") PostIt
+          ul.nav.navbar-nav.pull-right
+            li
+              a(href="#") Home  
     div.container
         block content
+  
+        
