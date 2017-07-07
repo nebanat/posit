@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    title= title
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='/stylesheets/select2.min.js')
+  body
+    nav.navbar.navbar-default.navbar-fixed-top
+      div.container
+        div.navbar-header
+          button(type="button" class="navbar-toggle",data-toggle="collapse",data-target="#myNavbar")
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar 
+          a.navbar-brand Postit
+        div.collapse.navbar-collapse#myNavbar
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(href="/") Sign In
+    block content

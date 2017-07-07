@@ -1,8 +1,39 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.jumbotron{
+  background-color:#000080;
+  color:#fff  
 }
 
-a {
-  color: #00B7FF;
+footer .glyphicon {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #000080;
+}
+
+.bg-grey{
+  background-color:#C0C0C0 
+}
+
+.navbar {
+    margin-bottom: 0;
+    background-color: #000080;
+    z-index: 9999;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+}
+
+.navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #000080 !important;
+    background-color: #fff !important;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
 }
