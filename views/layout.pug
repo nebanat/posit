@@ -8,9 +8,11 @@ html
         div.container-fluid
           div.navbar-header
             a.navbar-brand(href="#") PostIt
-          ul.nav.navbar-nav.pull-right
+          ul.nav.navbar-nav
             li
-              a(href="#") Home  
+              a(href="#") Home
+          div.pull-right.form-group
+            input.form-control(type="text",placeholder="Search users...")      
     div.container-fluid
     div.container
         block content

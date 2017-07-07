@@ -1,0 +1,31 @@
+extends layout
+
+block content
+    div.col-lg-8.col-md-offset-2
+        div.panel-body
+            div.alert.alert-info Enter your message below
+            h1=group
+            br
+            form(role=form)
+                div.form-group
+                    label Message:
+                    textarea.form-control(row="6",placeholder="Type your message here...")
+                div.form-group
+                    label Group:
+                    select.form-control Group
+                        option Java programmer
+                        option Laravel ninjas
+                        option Node girls
+                div.form-group
+                    label Type
+                    select.form-control
+                        option Normal
+                        option Urgent
+                        option Critical    
+                div.form-group
+                    button.btn.btn-default.btn-lg.pull-right(type="submit") Post It    
+                    
+                 
+                            
+
+

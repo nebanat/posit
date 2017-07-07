@@ -22,7 +22,11 @@ router.get('/new/group', function(req, res, next) {
 });
 
 router.get('/api/group/id', function(req, res, next) {
-  res.render('message_board', { groupname:'Andela Bootcamp' });
+  res.render('message_board');
+});
+
+router.get('/new/message', function(req, res, next) {
+  res.render('new_message', { groupname:'Andela Bootcamp' });
 });
 
 
