@@ -13,8 +13,17 @@ block content
                     label Description (Optional)
                     input.form-control.input-lg(type="text",placeholder="Describe your group")
                 div.form-group
-                    label Invitees
-                    input.form-control.input-lg(type="text",placeholder="Search for users")
+                    label Add Users
+                    select.form-control.select(multiple="multiple")
+                        option
+                            div.media
+                                div.media-left
+                                    img.img-circle.media-object(src="/images/profile.png",style="width:45px")
+                                div.media-body
+                                    h4.media-heading @djcranker
+                        option @bababeebest
+                        option @tokayeeh
+                        option @johndoe   
                 div.form-group
                     button.btn.btn-default.btn-lg.pull-right(type="submit") Create Group    
                     

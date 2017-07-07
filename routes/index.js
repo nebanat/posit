@@ -26,7 +26,7 @@ router.get('/api/group/id', function(req, res, next) {
 });
 
 router.get('/new/message', function(req, res, next) {
-  res.render('new_message', { groupname:'Andela Bootcamp' });
+  res.render('new_message');
 });
 
 

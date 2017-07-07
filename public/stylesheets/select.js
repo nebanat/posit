@@ -1,3 +1,1 @@
-$(function() {
-  $('.selectpicker').selectpicker();
-});
+$('.select').select2(); 
