@@ -3,26 +3,33 @@ extends layout
 block content
     div.row
         nav.col-md-3.bg-grey
-            h3.text-center Groups
+            br
+            br
+            br
             ul.nav.nav-pills.nav-stacked(data-spy="affix")
+                li
+                    h3.text-center Groups
+                    small 
                 li
                     a.text-center(href="") Java programmers
                     small 
-                hr    
                 li
                     a.text-center(href="") Node girls
                     small 
-                hr    
                 li.active
                     a.text-center(href="") Laravel ninjas
                     small 
-                hr      
                 li
                     a.text-center(href="") Pro TDD
                     small 
-                hr                  
-        div.col-md-7
-            button.btn.btn-default.pull-right New Message
+                li
+                    a.text-center(href="") Django Pros
+                    small 
+        div.col-md-6
+            br
+            br
+            br
+            a.btn.btn-default.pull-right(href="/new/message") New Message
             h3 Laravel Ninjas
             p
                 i A cool description about Laravel developers in this group.Lorem ipsum dolor sit amet, consectetur adipiscing elit. 

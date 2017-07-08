@@ -27,7 +27,7 @@ router.get('/new/group', function(req, res, next) {
   res.render('new_group', { group:'Create New Group' });
 });
 
-router.get('/api/group/id', function(req, res, next) {
+router.get('/groups', function(req, res, next) {
   res.render('message_board');
 });
 
