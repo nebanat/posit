@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const md5 = require('md5');
 
 /* GET welcome page. */
 router.get('/', (req, res, next)=> {
@@ -38,6 +39,8 @@ router.get('/new/message', (req, res, next)=> {
 router.get('/home', (req, res, next)=> {
   res.render('index');
 });
+
+
 
 /*router.get('/api/group/:id/messages', function(req, res, next) {
   res.send(req.params);
