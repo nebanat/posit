@@ -6,7 +6,9 @@ const groupController= require('../server/controllers').groups
 
 
 /* GET users listing. */
-router.post('/',groupController.create)
+router.post('/',groupController.create);
+router.get('/all',groupController.list)
+router.get('/:id',groupController.getGroup)
 
 //router.post('/signup',userController.create)
 
