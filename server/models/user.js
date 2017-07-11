@@ -1,3 +1,4 @@
+//const group = require('./models').Group
 module.exports = (sequelize, DataTypes)=> {
   const User = sequelize.define('User', {
     username:{
@@ -17,6 +18,9 @@ module.exports = (sequelize, DataTypes)=> {
     classMethods: {
       associate: (models)=> {
         // associations can be defined here
+        User.belongsToMany(models.Group,{through:'UserGroup',foreignKey:'userId'})
+
+        User.hasMany(models.Message,{onDelete:'CASCADE',foreignKey:'userId'})
         
       } 
     }
