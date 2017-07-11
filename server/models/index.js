@@ -1,5 +1,3 @@
-'use strict';
-
 const fs        = require('fs');
 const path      = require('path');
 const Sequelize = require('sequelize');
@@ -7,6 +5,7 @@ const basename  = path.basename(module.filename);
 const env       = process.env.NODE_ENV || 'development';
 const config    = require(`${__dirname}/../config/config.json`)[env];
 const db        = {};
+const dotenv    = require('dotenv').config()
 
 let sequelize;
 
@@ -22,7 +21,7 @@ fs
     return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
   })
   .forEach(file=> {
-    const model = sequelize['import'](path.join(__dirname, file));
+    const model = sequelize.import(path.join(__dirname, file));
     db[model.name] = model;
   });
 

@@ -8,6 +8,7 @@ const md5 = require('md5');
 
 const index = require('./routes/index');
 const users = require('./routes/users');
+const groups = require('./routes/groups');
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/api/user', users);
+app.use('/api/group', groups);
 
 // catch 404 and forward to error handler
 app.use((req, res, next)=> {
