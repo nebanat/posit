@@ -18,9 +18,9 @@ module.exports = (sequelize, DataTypes)=> {
     classMethods: {
       associate: (models)=> {
         // associations can be defined here
-        User.belongsToMany(models.Group,{through:'UserGroup',foreignKey:'userId'})
+        User.belongsToMany(models.Group,{as:'members',through:'UserGroup'})
 
-        User.hasMany(models.Message,{onDelete:'CASCADE',foreignKey:'userId'})
+        //User.hasMany(models.Message,{onDelete:'CASCADE',foreignKey:'userId'})
         
       } 
     }

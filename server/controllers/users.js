@@ -30,7 +30,12 @@ module.exports = {
       .catch(error=>res.send(400).send(error));
 
   },
-  signOut(req,res){
-    
-  }
+ list(req, res){
+    return User
+       .all({
+         include:[{all:true}]
+       })
+       .then(users=>res.status(200).send(users))
+       .catch(error=>res.status(400).send(error))
+  },
 };

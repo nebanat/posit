@@ -1,15 +1,27 @@
 const express = require('express');
-const router = express.Router();
+const group = express.Router();
 //const md5 = require('md5');
 
 const groupController= require('../server/controllers').groups
 
 
+
+
+
+group.use((req,res,next)=>{
+  if(!req.session.user){
+    return res.status(401).send();
+  }
+
+  //return res.status(200).send('Welcome to super secret key')
+   next();
+})
+
 /* GET users listing. */
-router.post('/',groupController.create);
-router.get('/all',groupController.list)
-router.get('/:id',groupController.getGroup)
+group.post('/',groupController.create);
+group.get('/all',groupController.list)
+group.get('/:id',groupController.getGroup)
 
 //router.post('/signup',userController.create)
 
-module.exports = router;
+module.exports = group;

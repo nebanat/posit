@@ -14,13 +14,13 @@ router.post('/signup',userController.create);
 
 router.post('/signin',userController.signIn);
 
-router.get('/dashboard',(req,res)=>{
+router.use((req,res,next)=>{
   if(!req.session.user){
     return res.status(401).send();
   }
 
-  return res.status(200).send('Welcome to super secret key')
-
+  //return res.status(200).send('Welcome to super secret key')
+   next();
 })
 
 router.get('/signout',(req,res)=>{
@@ -29,5 +29,7 @@ router.get('/signout',(req,res)=>{
    })
   res.end();
 })
+
+router.get('/all', userController.list);
 
 module.exports = router;
