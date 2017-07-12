@@ -13,7 +13,9 @@ module.exports = {
   },
   list(req, res){
     return Group
-       .all()
+       .all({
+         include:[{all:true}]
+       })
        .then(groups=>res.status(200).send(groups))
        .catch(error=>res.status(400).send(error))
   },
