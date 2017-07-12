@@ -1,5 +1,5 @@
 const Group =require('../models').Group
-//const md5 = require('md5');
+const md5 = require('md5');
 
 module.exports = {
   create(req, res) {

@@ -1,28 +1,26 @@
-//const group = require('./models').Group
-module.exports = (sequelize, DataTypes)=> {
-  const User = sequelize.define('User', {
+'use strict';
+module.exports = function(sequelize, DataTypes) {
+  var User = sequelize.define('User', {
     username:{
-      type: DataTypes.STRING,
-      allowNull:true,
-    }, 
-    email:{
-      type: DataTypes.STRING,
+      type:DataTypes.STRING,
       allowNull:false,
       unique:true
-    }, 
-    password:{
-      type: DataTypes.STRING,
+    },
+    email:{
+      type:DataTypes.STRING,
       allowNull:false,
+      unique:true
+    },
+    password:{
+      type:DataTypes.STRING,
+      allowNull:false
     } 
   }, {
     classMethods: {
-      associate: (models)=> {
+      associate: function(models) {
         // associations can be defined here
-        User.belongsToMany(models.Group,{as:'members',through:'UserGroup'})
-
-        //User.hasMany(models.Message,{onDelete:'CASCADE',foreignKey:'userId'})
-        
-      } 
+        User.belongsToMany(models.Group,{as:'membership',through:'UsersGroups'})
+      }
     }
   });
   return User;

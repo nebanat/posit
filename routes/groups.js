@@ -22,6 +22,6 @@ group.post('/',groupController.create);
 group.get('/all',groupController.list)
 group.get('/:id',groupController.getGroup)
 
-//router.post('/signup',userController.create)
+
 
 module.exports = group;
