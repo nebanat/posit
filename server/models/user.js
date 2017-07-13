@@ -1,25 +1,59 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var User = sequelize.define('User', {
+  const User = sequelize.define('User', {
     username:{
       type:DataTypes.STRING,
-      allowNull:false,
-      unique:true
+      isUnique:true,
+      //validations for the username field defined//
+      validate:{
+        //validates that the username doesnt already exist//
+        isUnique: sequelize.validateIsUnique('username',"Username already exist. please choose another one"),
+        notEmpty:{
+          args:true,
+          msg:"username cannot be empty"
+        }
+      }
     },
     email:{
       type:DataTypes.STRING,
-      allowNull:false,
-      unique:true
+      isUnique:true,
+      //validations for the email field defined//
+      validate:{
+        //validates that the email doesnt already exist//
+        isUnique: sequelize.validateIsUnique('email',"Email already exist. please choose another one"),
+        isEmail:{
+          args:true,
+          msg:"A valid email is required",
+        },
+       notEmpty:{
+          args: true,
+          msg:"Email cannot be empty"
+        }
+       
+      }
+
     },
     password:{
       type:DataTypes.STRING,
-      allowNull:false
+      validate:{
+        min:{
+          args:5,
+          msg:"Password must be at 5 characters"
+        },
+        notEmpty:{
+          args: true,
+          msg:"Password cannot be empty"
+        }
+
+      }
     } 
   }, {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        User.belongsToMany(models.Group,{as:'Usergroups',through:'UsersGroups',foreignKey:'userId'})
+        User.belongsToMany(models.Group,{as:'userGroups',through:'UsersGroups',foreignKey:'userId'})
+
+        User.hasMany(models.Message,{foreignKey:'userId',as:'messages'})
       }
     }
   });

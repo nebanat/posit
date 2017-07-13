@@ -1,5 +1,7 @@
 const User =require('../models').User
+const Group =require('../models').Group
 const md5 = require('md5');
+const bcrypt = require('bcrypt')
 
 module.exports = {
   create(req, res) {
@@ -29,7 +31,7 @@ module.exports = {
       })
       .catch(error=>res.send(400).send(error));
 
-  },
+  }, 
  list(req, res){
     return User
        .all({
@@ -38,4 +40,10 @@ module.exports = {
        .then(users=>res.status(200).send(users))
        .catch(error=>res.status(400).send(error))
   },
+  hashP(req,res){
+     return bcrypt.hash("bacon", null, null, function(err, hash) {
+       // Store hash in your password DB.
+
+     })
+  }
 };

@@ -5,6 +5,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const md5 = require('md5');
+const bcrypt = require('bcrypt')
 const session = require('express-session');
 
 const index = require('./routes/index');

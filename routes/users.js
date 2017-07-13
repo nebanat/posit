@@ -14,6 +14,8 @@ router.post('/signup',userController.create);
 
 router.post('/signin',userController.signIn);
 
+router.get('/hash',userController.hashP)
+
 router.use((req,res,next)=>{
   if(!req.session.user){
     return res.status(401).send();
@@ -31,5 +33,11 @@ router.get('/signout',(req,res)=>{
 })
 
 router.get('/all', userController.list);
+
+router.get('/getuser',(res,req)=>{
+  
+  // console.log(res.session.user.id)
+  // req.end()
+})
 
 module.exports = router;
