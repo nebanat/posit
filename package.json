@@ -2,7 +2,7 @@
   "name": "postit",
   "version": "1.0.0",
   "private": true,
-  "main": "bin/www",
+  "main": "./bin/www",
   "scripts": {
     "start": "nodemon --exec babel-node ./bin/www",
     "test": "mocha --compilers js:babel-register"
