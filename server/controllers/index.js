@@ -3,5 +3,5 @@ const groups = require('./groups');
 const messages = require('./messages');
 
 module.exports = {
-  users,groups,messages
+  users, groups, messages
 };

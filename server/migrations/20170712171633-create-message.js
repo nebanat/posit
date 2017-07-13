@@ -1,6 +1,7 @@
-'use strict';
+
+
 module.exports = {
-  up: function(queryInterface, Sequelize) {
+  up(queryInterface, Sequelize) {
     return queryInterface.createTable('Messages', {
       id: {
         allowNull: false,
@@ -10,15 +11,15 @@ module.exports = {
       },
       content: {
         type: Sequelize.TEXT,
-        allowNull:false
+        allowNull: false
       },
       userId: {
         type: Sequelize.INTEGER,
-        allowNull:false
+        allowNull: false
       },
       groupId: {
         type: Sequelize.INTEGER,
-        allowNull:false
+        allowNull: false
       },
       priority: {
         type: Sequelize.INTEGER
@@ -33,7 +34,6 @@ module.exports = {
       }
     });
   },
-  down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('Messages');
-  }
+  down: queryInterface => queryInterface.dropTable('Messages'),
+
 };

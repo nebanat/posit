@@ -1,49 +1,48 @@
-const User =require('../models').User
-const Group =require('../models').Group
+const User = require('../models').User;
+// const Group = require('../models').Group;
+/* eslint-disable import/no-extraneous-dependencies*/
 const md5 = require('md5');
-const bcrypt = require('bcrypt')
+// const bcrypt = require('bcrypt');
 
 module.exports = {
   create(req, res) {
     return User
       .create({
         username: req.body.username,
-        email:req.body.email,
-        password:req.body.password
+        email: req.body.email,
+        password: md5(req.body.password)
       })
       .then(user => res.status(201).send(user))
       .catch(error => res.status(400).send(error));
   },
-  signIn(req,res){
+  /* This method signs up*/
+  signIn(req, res) {
     return User
-      .findOne({ where:{
-         username: req.body.username, password:req.body.password
-       } 
+      .findOne({ where: {
+        username: req.body.username, password: md5(req.body.password)
+      }
       })
-      .then(user=>{
-        if(!user){
+      .then((user) => {
+        /* Checks to see if the user exist*/
+        if (!user) {
           return res.status(404).send({
-            message:'Invalid Auth details'
-          })
+            message: 'Invalid Auth details'
+          });
         }
-        req.session.user=user
-        return res.status(200).send(user)
+        /* creates a session for the user*/
+        req.session.user = user;
+        return res.status(200).send(user);
       })
-      .catch(error=>res.send(400).send(error));
-
-  }, 
- list(req, res){
-    return User
-       .all({
-         include:[{all:true}]
-       })
-       .then(users=>res.status(200).send(users))
-       .catch(error=>res.status(400).send(error))
+      .catch(error => res.send(400).send(error));
   },
-  hashP(req,res){
-     return bcrypt.hash("bacon", null, null, function(err, hash) {
-       // Store hash in your password DB.
-
-     })
+  list(req, res) {
+    /** Extraneous method that returns users with all relationship */
+    return User
+      .all({
+        include: [{ all: true }]
+      })
+      .then(users => res.status(200).send(users))
+      .catch(error => res.status(400).send(error));
   }
+
 };
