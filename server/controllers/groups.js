@@ -1,8 +1,5 @@
 import models from '../models';
-// const User = require('../models').User;
-// const Message = require('../models').Message;
-// const UsersGroups = require('../models').UsersGroups;
-// const md5 = require('md5');
+
 
 export default {
   create(req, res) {
@@ -19,7 +16,7 @@ export default {
         });
         res.status(201).send(group);
       })
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).send(error.name));
   },
   list(req, res) {
     return models.Group
@@ -27,7 +24,7 @@ export default {
         include: [{ all: true }]
       })
       .then(groups => res.status(200).send(groups))
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).send(error.name));
   },
   addUserToGroup(req, res) {
     return models.Group
@@ -38,15 +35,23 @@ export default {
             message: 'Group not found'
           });
         }
-        return res.send(group);
-      })
-      .then(models.UsersGroups
-        .create({
-          userId: req.session.user.id,
-          groupId: req.params.id,
+        // if (!models.User.findById(req.body.userId)) {
+        //   return res.status(404).send({
+        //     message: 'User not found'
+        //   });
+        // }
 
-        }))
-      .then(res.send('User successfully added to the group'))
+        models.UsersGroups
+          .create({
+            userId: req.body.userId,
+            groupId: req.params.id,
+
+          });
+
+        res.send('User successfully added to the group');
+
+        // return res.send(group);
+      })
       .catch(error => res.status(400).send(error));
   },
   addMessageToGroup(req, res) {

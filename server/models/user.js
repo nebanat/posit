@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         min: {
           args: 5,
-          msg: 'Password must be at 5 characters'
+          msg: 'Password must be at least 5 characters'
         },
         notEmpty: {
           args: true,

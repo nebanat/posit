@@ -14,6 +14,8 @@ router.post('/signup', userController.create);
 
 router.post('/signin', userController.signIn);
 
+router.get('/find/:id', userController.userExist);
+
 // router.get('/hash',userController.hashP)
 
 router.use((req, res, next) => {
@@ -34,6 +36,7 @@ router.get('/signout', (req, res) => {
 });
 
 router.get('/all', userController.list);
+
 
 /** router.get('/getuser', (res, req) => {
 

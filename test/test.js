@@ -1,21 +1,47 @@
-import chai from'chai';
+import chai from 'chai';
+import chaiHttp from 'chai-http';
+import app from '../app';
+import models from '../server/models';
 
-const expect = chai.expect();
-chai.should();
+process.env.NODE_ENV = 'test';
+const should = chai.should();
 
-/** eslint-disable valid-jsdoc*/
-function returnsName(name) {
-  return name;
-}
+chai.use(chaiHttp);
 
-describe('Employee',()=>{
-    it('returns the name passed to the function',()=>{
-        returnsName('Aaron').should.equal('Aaron');
+models.User.destroy({
+  where: {},
+  cascade: true,
+  truncate: true
+});
 
-    })
+models.Group.destroy({
+  where: {},
+  cascade: true,
+  truncate: true
+});
 
-})
+models.Message.destroy({
+  where: {},
+  cascade: true,
+  truncate: true
+});
 
-// describe('Salary',()=>{
-    
-// })
+describe('test app', () => {
+  describe('create user: ', () => {
+    it('POST /api/user/signup creates a new user', (done) => {
+      chai.request(app)
+        .post('/api/user/signup')
+        .type('form')
+        .send({
+          password: 'testpassword',
+          username: 'testusername',
+          email: 'test@user.com'
+        })
+        .end((err, res) => {
+          res.body.email.should.equal('test@user.com');
+          res.should.have.status(201);
+          done();
+        });
+    });
+  });
+});

@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           args: true,
-          msg: 'A message has to be posted to group'
+          msg: 'A message has to be posted to a group'
         }
       }
     },
