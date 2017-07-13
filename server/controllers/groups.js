@@ -1,19 +1,19 @@
-const Group = require('../models').Group;
+import models from '../models';
 // const User = require('../models').User;
-const Message = require('../models').Message;
-const UsersGroups = require('../models').UsersGroups;
+// const Message = require('../models').Message;
+// const UsersGroups = require('../models').UsersGroups;
 // const md5 = require('md5');
 
-module.exports = {
+export default {
   create(req, res) {
-    return Group
+    return models.Group
       .create({
         name: req.body.name,
         description: req.body.description,
       })
       .then((group) => {
         // console.log(group.id)
-        UsersGroups.create({
+        models.UsersGroups.create({
           userId: req.session.user.id,
           groupId: group.id
         });
@@ -22,7 +22,7 @@ module.exports = {
       .catch(error => res.status(400).send(error));
   },
   list(req, res) {
-    return Group
+    return models.Group
       .all({
         include: [{ all: true }]
       })
@@ -30,7 +30,7 @@ module.exports = {
       .catch(error => res.status(400).send(error));
   },
   addUserToGroup(req, res) {
-    return Group
+    return models.Group
       .findById(req.params.id)
       .then((group) => {
         if (!group) {
@@ -40,7 +40,7 @@ module.exports = {
         }
         return res.send(group);
       })
-      .then(UsersGroups
+      .then(models.UsersGroups
         .create({
           userId: req.session.user.id,
           groupId: req.params.id,
@@ -50,7 +50,7 @@ module.exports = {
       .catch(error => res.status(400).send(error));
   },
   addMessageToGroup(req, res) {
-    return Group
+    return models.Group
       .findById(req.params.id)
       .then((group) => {
         if (!group) {
@@ -58,7 +58,7 @@ module.exports = {
             message: 'Group not found'
           });
         }
-        Message.create({
+        models.Message.create({
           content: req.body.content,
           priority: req.body.priority,
           userId: req.session.user.id,
@@ -70,8 +70,9 @@ module.exports = {
       .catch(error => res.status(400).send(error));
   },
   getGroupMessages(req, res) {
-    return Group
-      .findOne({ where: { id: req.params.id }, include: [{ model: Message, as: 'messages' }] })
+    return models.Group
+      .findOne({ where: { id: req.params.id },
+        include: [{ model: models.Message, as: 'messages' }] })
       .then(group => res.status(200).send(group))
       .catch(error => res.status(400).send(error));
   }

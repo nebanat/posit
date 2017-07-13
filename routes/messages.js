@@ -1,4 +1,4 @@
-const express = require('express');
+import express from 'express';
 
 const message = express.Router();
 // const Message = require('../server/models').Message;

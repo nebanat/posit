@@ -1,4 +1,4 @@
-const express = require('express');
+import express from 'express';
 
 const group = express.Router();
 // const Group = require('../server/models').Group;

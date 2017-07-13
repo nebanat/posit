@@ -1,4 +1,4 @@
-const User = require('../models').User;
+import models from '../models';
 // const Group = require('../models').Group;
 /* eslint-disable import/no-extraneous-dependencies*/
 const md5 = require('md5');
@@ -6,7 +6,7 @@ const md5 = require('md5');
 
 module.exports = {
   create(req, res) {
-    return User
+    return models.User
       .create({
         username: req.body.username,
         email: req.body.email,
@@ -17,7 +17,7 @@ module.exports = {
   },
   /* This method signs up*/
   signIn(req, res) {
-    return User
+    return models.User
       .findOne({ where: {
         username: req.body.username, password: md5(req.body.password)
       }
@@ -37,7 +37,7 @@ module.exports = {
   },
   list(req, res) {
     /** Extraneous method that returns users with all relationship */
-    return User
+    return models.User
       .all({
         include: [{ all: true }]
       })
