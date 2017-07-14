@@ -14,6 +14,7 @@ services:
 cache:
  - npm install
 before_script:
+ - npm install -g sequelize-cli
  - export DATABASE_URL=postgres://mmqznuak:DXPFvE-kEo2YVIsUxuF56sfqoHx1JVmy@pellefant.db.elephantsql.com:5432/mmqznuak
  - sequelize db:migrate
 after_success:
