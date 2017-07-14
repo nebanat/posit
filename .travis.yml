@@ -1,0 +1,25 @@
+language: node_js
+branches:
+ only:
+     - controllers
+     - master
+node_js:
+   - "6.11.0"
+install:
+   - npm install
+script:
+   - npm test
+services:
+ - postgresql
+cache:
+ - npm install
+before_script:
+ - npm install -g sequelize-cli
+ - export DATABASE_URL=postgres://mmqznuak:DXPFvE-kEo2YVIsUxuF56sfqoHx1JVmy@pellefant.db.elephantsql.com:5432/mmqznuak
+ - sequelize db:migrate
+after_success:
+- npm run coveralls
+after_script:
+ - nyc npm test && nyc report --reporter=text-lcov | coveralls
+notifications:
+ webhooks: https://coveralls.io/webhook?repo_token=cG2GU5sfLoIeAbNADg67A6vorgqPKhtfe
