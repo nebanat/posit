@@ -1,6 +1,7 @@
 # posit
 
 [![Build Status](https://travis-ci.org/nebanat/posit.svg?branch=master)](https://travis-ci.org/nebanat/posit)
+[![Coverage Status](https://coveralls.io/repos/github/nebanat/posit/badge.svg?branch=master)](https://coveralls.io/github/nebanat/posit?branch=master)
 
 *POSTIT**
 > - A web application that allows users to create groups and send broadcast messages

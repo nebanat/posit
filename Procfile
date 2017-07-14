@@ -1,1 +1,1 @@
-web: node bin/www
+web: node  --exec babel-node ./bin/www"

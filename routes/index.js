@@ -8,6 +8,10 @@ router.get('/', (req, res) => {
   res.render('index', { title: 'PostIt Messaging App', login: 'login' });
 });
 
+router.get('/example', (req, res) => {
+  res.status(200).send();
+});
+
 /* GET login page. */
 router.get('/login', (req, res) => {
   res.render('login', { title: 'PostIt Messaging App', login: 'login' });
