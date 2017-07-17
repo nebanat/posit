@@ -35,11 +35,11 @@ export default {
             message: 'Group not found'
           });
         }
-        // if (!models.User.findById(req.body.userId)) {
-        //   return res.status(404).send({
-        //     message: 'User not found'
-        //   });
-        // }
+        if (!models.User.findById(req.body.userId)) {
+          return res.status(404).send({
+            message: 'User not found'
+          });
+        }
 
         models.UsersGroups
           .create({

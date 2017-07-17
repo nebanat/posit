@@ -12,8 +12,8 @@ module.exports = {
         email: req.body.email,
         password: md5(req.body.password)
       })
-      .then(user => res.status(201).send(user.username))
-      .catch(error => res.status(400).send(error.message));
+      .then(user => res.status(201).send(user))
+      .catch(error => res.status(400).send(error));
   },
   /* This method signs up*/
   signIn(req, res) {
@@ -31,9 +31,9 @@ module.exports = {
         }
         /* creates a session for the user*/
         req.session.user = user;
-        return res.status(200).send(user.username);
+        return res.status(200).send(user);
       })
-      .catch(error => res.send(400).send(error.message));
+      .catch(error => res.send(400).send(error));
   },
   list(req, res) {
     /** Extraneous method that returns users with all relationship */
@@ -60,7 +60,7 @@ module.exports = {
         // req.session.user = user;
         return res.send(true);
       })
-      .catch(error => res.send(400).send(error.message));
+      .catch(error => res.send(400).send(error));
   }
 
 };

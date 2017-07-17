@@ -6,7 +6,7 @@
   "scripts": {
     "start": "babel-node ./bin/www",
     "dev": "nodemon --exec babel-node ./bin/www",
-    "test": "mocha --compilers --timeout 50000 js:babel-register"
+    "test": "mocha --compilers js:babel-register --timeout 50000 "
   },
   "dependencies": {
     "babel-cli": "^6.24.1",

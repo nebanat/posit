@@ -10,7 +10,7 @@ const groupController = require('../server/controllers').groups;
 
 group.use((req, res, next) => {
   if (!req.session.user) {
-    return res.status(401).send();
+    return res.status(401).send('Unauthorized. You must be logged in');
   }
 
   // return res.status(200).send('Welcome to super secret key')
