@@ -1,5 +1,5 @@
 
-
+/*eslint-disable*/
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     username: {
@@ -26,6 +26,26 @@ module.exports = (sequelize, DataTypes) => {
         isEmail: {
           args: true,
           msg: 'A valid email is required',
+        },
+        notEmpty: {
+          args: true,
+          msg: 'Email cannot be empty'
+        }
+
+      }
+
+    },
+     phone: {
+      type: DataTypes.STRING,
+      isUnique: true,
+      // validations for the email field defined//
+      validate: {
+        // validates that the email doesnt already exist//
+        isUnique: sequelize
+          .validateIsUnique('phone', 'Phone number already exist'),
+        min: {
+          args: 11,
+          msg: 'Phone number must be 11 digits'
         },
         notEmpty: {
           args: true,
