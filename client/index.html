@@ -3,12 +3,60 @@
     <head>
         <meta charset="UTF-8">
         <title>Postit React</title>
+       <!--Import Google Icon Font-->
+       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+       <!--Import materialize.css-->
+       <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css"  media="screen,projection"/>
+        <!--custom css -->    
+        <link rel="stylesheet" href="app/css/style.css">   
+
     </head>
     <body>
+        <!--<main>-->
+            <div id='app'></div>
+            <!-- Modal Structure -->
+   <div id="modal1" class="modal bottom-sheet">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div> 
 
-        <div id='app'></div>
+        <!--</main>-->
+    
+        
+        
+         <!-- <footer id='footer' class="grey lighten-5 page-footer">
+          <div class="container">
+            <div class="row">
+               <div class="col s6 offset-s6">
+                <!-- Modal Trigger -->
+                 <!-- <a class="waves-effect waves-light btn modal-trigger" href="#modal1">New Message</a>
+              </div>
+            </div>
+          </div>
+        </footer> --> 
+         
      
+        
         <!--transpiled boilerplate js-->
-        <script src='app/js/app.js'></script> 
+        <script src='app/js/app.js'></script>
+        <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <script type="text/javascript" src="assets/js/materialize.min.js"></script>
+       <script>
+        // Initialize collapse button
+        $(".button-collapse").sideNav();
+        // $(".collapsible").collasiple();
+       </script>
+       <script>
+           $(document).ready(function(){
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+  });
+       </script>
     </body>
 </html>
