@@ -7,19 +7,21 @@ class Navigation extends React.Component{
     render(){
         return (
             <div className='navbar-fixed'>
-                <nav className='white'>
-                    <div className="nav-wrapper">
-                        <a href="#" className="brand-logo">#</a>
-                        <ul id="nav-mobile" className="right hide-on-med-and-down">
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                        </ul>
+                <nav className='navbar teal'>
+                    <div className="container-fluid">
+                        <div className="navbar-header">
+                            <a className="navbar-brand" href="index.html">#POSTIT</a>
+                        </div>
+                        <div className="collapse navbar-collapse" id="navbar-collapse">
+                            <ul id="nav-mobile" className="right hide-on-med-and-down">
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </div>        
+                        
                     </div>
-                    <div className='nav-body white dark-text'>
-                        <p></p>
-                    </div>
-                 </nav>
+                </nav>
             </div>
 
         );

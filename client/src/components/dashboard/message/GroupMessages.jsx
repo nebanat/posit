@@ -4,60 +4,54 @@ import ReactDOM from 'react-dom';
 
 
 class GroupMessages extends React.Component{
+    
+    messageTypeColor(value){
+        if(value===1){
+           return "new badge red darken-4 left secondary-content"
+        }
+        else if(value===2){
+            return "new badge yellow darken-4 left secondary-content"
+        }
+        else if(value===3){
+            return "new badge blue darken-4 left secondary-content"
+        }
+    }
+    messageType(value){
+        if(value===1){
+           return "critical"
+        }
+        else if(value===2){
+            return "urgent"
+        }
+        else if(value===3){
+            return "normal"
+        }
+    }
+    noMessages(){
+        // const messages =this.props.message;
+         
+        if(this.props.messages){
+            return this.props.messages.map(message=>(
+                  <li className="collection-item avatar" key={message.content}>
+                    <img alt="" className="circle"/>
+                    <strong className="title">@{message.user}<small><i className='teal-text'> 1:30PM </i></small>
+                    </strong>
+                    <br/>
+                    <p>{message.content}</p>
+                    <span className={this.messageTypeColor(message.priority)} data-badge-caption={this.messageType(message.priority)}>
+                    </span>
+                  </li>
+              ))
+        }
+        return <div className='center'>Group has no messages</div>
+        
+    }
     render(){
         return (
             <div>
                <ul className="collection">
-                    <li className="collection-item avatar">
-                        <img alt="" className="circle"/>
-                        <strong className="title">@djcranker<small><i className='teal-text'> 1:30PM </i></small></strong>
-                        <br/>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> 
-                        <span className="new badge red darken-4 left secondary-content" data-badge-caption="critical"></span>
-                    </li>
-                    <li className="collection-item avatar">
-                        <img alt="" className="circle"/>
-                        <strong className="title">@bababeebest<small><i className='teal-text'> 2:59PM </i></small></strong>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> 
-                        <span className="new badge yellow darken-4 left secondary-content" data-badge-caption="urgent"></span>
-                    </li>
-                    <li className="collection-item avatar">
-                        <img alt="" className="circle"/>
-                        <strong className="title">@babagloria<small><i className='teal-text'> 3:43PM </i></small></strong>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <span className="new badge blue darken-4 left secondary-content" data-badge-caption="normal"></span>
-                    </li>
-                    <li className="collection-item avatar">
-                        <img alt="" className="circle"/>
-                        <strong className="title">@ashambilly<small><i className='teal-text'> 4:59PM </i></small></strong>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <span className="new badge red darken-4 left secondary-content" data-badge-caption="critical"></span>
-                    </li>
-                    <li className="collection-item avatar">
-                        <img alt="" className="circle"/>
-                        <strong className="title">@djcranker<small><i className='teal-text'> 5:09PM </i></small></strong>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> 
-                        <span className="new badge yellow darken-4 left secondary-content" data-badge-caption="urgent"></span>
-                    </li>
-                    <li className="collection-item avatar">
-                        <img alt="" className="circle"/>
-                        <strong className="title">@bababeebest<small><i className='teal-text'> 6:00PM </i></small></strong>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> 
-                        <span className="new badge blue darken-4 left secondary-content" data-badge-caption="normal"></span>
-                    </li>
-                    <li className="collection-item avatar">
-                        <img alt="" className="circle"/>
-                        <strong className="title">@babagloria<small><i className='teal-text'> 7:20PM </i></small></strong>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <span className="new badge blue darken-4 left secondary-content" data-badge-caption="normal"></span>
-                    </li>
-                    <li className="collection-item avatar">
-                        <img alt="" className="circle"/>
-                        <strong className="title">@ashambilly<small><i className='teal-text'> 8:40PM </i></small></strong>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <span className="new badge yellow darken-4 left secondary-content" data-badge-caption="urgent"></span>
-                    </li>
-            </ul>
+                   {this.noMessages()}
+                </ul>
             
             </div>
 
