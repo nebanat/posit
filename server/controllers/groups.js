@@ -1,8 +1,11 @@
+
 import models from '../models';
 
 
-export default {
+module.exports = {
   create(req, res) {
+    /** validates user input */
+
     return models.Group
       .create({
         name: req.body.name,
@@ -11,12 +14,12 @@ export default {
       .then((group) => {
         // console.log(group.id)
         models.UsersGroups.create({
-          userId: req.session.user.id,
+          userId: req.decoded.id,
           groupId: group.id
         });
         res.status(201).send(group);
       })
-      .catch(error => res.status(400).send(error.name));
+      .catch(error => res.status(402).send(error.name));
   },
   list(req, res) {
     return models.Group
@@ -24,7 +27,7 @@ export default {
         include: [{ all: true }]
       })
       .then(groups => res.status(200).send(groups))
-      .catch(error => res.status(400).send(error.name));
+      .catch(error => res.status(402).send(error.name));
   },
   addUserToGroup(req, res) {
     return models.Group

@@ -1,53 +1,49 @@
+/*eslint-disable*/
 import models from '../models';
 
-// const userValidation = require('../validations').users;
-// const Group = require('../models').Group;
+
+const jwt = require('jsonwebtoken');
 /* eslint-disable import/no-extraneous-dependencies*/
-/*eslint-disable*/
 const md5 = require('md5');
 // const bcrypt = require('bcrypt');
 
 module.exports = {
   create(req, res) {
     /** validates username, email,phone and password */
-    if (!req.body.username || req.body.username == null) {
-      return res.status(400).send({
+    if (!req.body.username) {
+      return res.status(402).send({
         message: 'Please enter a valid username'
       });
-    } else if (!req.body.email || req.body.email == null) {
-      return res.status(400).send({
+    } 
+    else if (!req.body.email) {
+      return res.status(402).send({
         message: 'Please enter a valid email'
       });
-    } else if (!req.body.phone || req.body.phone == null || req.body.phone.length !== 11) {
-      return res.status(400).send({
-        message: 'Please enter a valid phone number'
-      });
-    } else if (!req.body.password || req.body.password.length < 8) {
-      return res.status(400).send({
+    }
+     else if (!req.body.password || req.body.password.length < 8) {
+      return res.status(402).send({
         message: 'Password is required and must be at least 8 characters'
       });
     }
-
+    //creates the user//
     return models.User
       .create({
         username: req.body.username,
         email: req.body.email,
-        phone: req.body.phone,
         password: md5(req.body.password)
       })
-      .then(user => res.status(201).send({
+      .then(user => res.status(200).send({
         message: 'Signup successful',
         username: user.username,
         email: user.email,
-        phone: user.phone
-      }))
-      .catch(error => res.status(400).send({
+       }))
+      .catch(error => res.status(402).send({
         message: error.message
       }));
   },
-  /* This method signs up*/
+  /* user signIn method*/
   signIn(req, res) {
-    if (!req.body.username || req.body.username == null || !req.body.password || req.body.password == null) {
+    if (!req.body.username || !req.body.password) {
       return res.status(400).send({
         message: 'All fields are required'
       });
@@ -61,15 +57,17 @@ module.exports = {
         /* Checks to see if the user exist*/
         if (!user) {
           return res.status(404).send({
-            message: 'Invalid Auth details'
+            message: 'Invalid username or password'
           });
         }
-        /* creates a session for the user*/
-        req.session.user = user;
-        return res.status(200).send({
-          message: `Welcome ${user.username}`,
-
-        });
+        const token=jwt.sign({user},process.env.SECRET,{
+          expiresIn:'24h'
+        })
+        
+         return res.status(200).send({
+            message: `Welcome ${user.username}`,
+            token:token
+          });
       })
       .catch(error => res.send(400).send(error));
   },
@@ -84,9 +82,7 @@ module.exports = {
         message: error.message
       }));
   },
-  rUser(req, res) {
-    res.send('I can see the user controller');
-  },
+  
 
   userExist(req, res) {
     return models.User

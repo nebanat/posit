@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Dashboard from './dashboard/Dashboard.jsx'
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 class App extends React.Component{
     constructor(props){
@@ -31,7 +32,8 @@ class App extends React.Component{
           ],
         userInfo:{"username":"nebanat","email":"abiliyok@gmail.com"},
         active:null,
-        selectedGroup:[]
+        selectedGroup:[],
+        users:[]
         
       }
     }
@@ -51,6 +53,13 @@ class App extends React.Component{
     }  
     
     componentDidMount(){
+      axios({
+        method:'get',
+        url:'http://localhost:3000/api/user/all',
+      })
+      .then(function (response) {
+        console.log(response);
+    })
         
     }
 

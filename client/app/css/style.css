@@ -6,3 +6,6 @@
  main {
      flex: 1 0 auto;
  }
+.clearfix{
+    margin-top:"20px";
+}    

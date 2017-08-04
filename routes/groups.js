@@ -1,21 +1,12 @@
+/*eslint-disable */
 import express from 'express';
+import authenticate from '../middleware/authenticate.js';
 
 const group = express.Router();
-// const Group = require('../server/models').Group;
-// const UsersGroups = require('../server/models').UsersGroups;
-// const md5 = require('md5');
-
 const groupController = require('../server/controllers').groups;
 
 
-group.use((req, res, next) => {
-  if (!req.session.user) {
-    return res.status(401).send('Unauthorized. You must be logged in');
-  }
-
-  // return res.status(200).send('Welcome to super secret key')
-  next();
-});
+group.use(authenticate);
 
 /* GET users listing. */
 group.post('/', groupController.create);

@@ -35,26 +35,6 @@ module.exports = (sequelize, DataTypes) => {
       }
 
     },
-     phone: {
-      type: DataTypes.STRING,
-      isUnique: true,
-      // validations for the email field defined//
-      validate: {
-        // validates that the email doesnt already exist//
-        isUnique: sequelize
-          .validateIsUnique('phone', 'Phone number already exist'),
-        min: {
-          args: 11,
-          msg: 'Phone number must be 11 digits'
-        },
-        notEmpty: {
-          args: true,
-          msg: 'Email cannot be empty'
-        }
-
-      }
-
-    },
     password: {
       type: DataTypes.STRING,
       validate: {

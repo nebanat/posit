@@ -8,7 +8,7 @@ class NewMessage extends React.Component{
     render(){
         return(
             <div>
-              <Modal header='Modal Header'
+              <Modal header=''
 	            bottomSheet
 	            trigger={
 		          <Button waves='light'>New Message</Button>
@@ -21,8 +21,8 @@ class NewMessage extends React.Component{
                         </div>
                     </div>
                     
-            </div>
-              </Modal>
+                </div>
+                </Modal>
             </div>
         )
     }

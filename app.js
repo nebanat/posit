@@ -7,10 +7,12 @@ const bodyParser = require('body-parser');
 const md5 = require('md5');
 // const bcrypt = require('bcrypt');
 const session = require('express-session');
+const jwt = require('jsonwebtoken');
 
 const index = require('./routes/index');
 const users = require('./routes/users');
 const groups = require('./routes/groups');
+const cors = require('cors');
 
 const app = express();
 
@@ -24,6 +26,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors());
+
 app.use(session({ secret: 'fgdhdhd93938sshs', resave: false, saveUninitialized: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 

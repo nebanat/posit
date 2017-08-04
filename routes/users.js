@@ -1,14 +1,18 @@
+/*eslint-disable */
+import authenticate from '../middleware/authenticate.js';
+
 const express = require('express');
 
 const router = express.Router();
 
 const userController = require('../server/controllers').users;
 
+const jwt = require('jsonwebtoken');
+
+
 
 /* GET users listing. */
-/** router.get('/', (req, res, next) => {
-  res.send('respond with a resource');
-});**/
+
 
 router.post('/signup', userController.create);
 
@@ -16,18 +20,9 @@ router.post('/signin', userController.signIn);
 
 router.get('/find/:id', userController.userExist);
 
-// router.get('/hash',userController.hashP)
 
-router.use((req, res, next) => {
-  if (!req.session.user) {
-    return res.status(401).send({
-      message: 'Unauthorized you must be logged in'
-    });
-  }
 
-  // return res.status(200).send('Welcome to super secret key')
-  next();
-});
+router.use(authenticate);
 
 router.get('/signout', (req, res) => {
   req.session.destroy(() => {
@@ -37,13 +32,10 @@ router.get('/signout', (req, res) => {
   res.end();
 });
 
-router.get('/all', userController.list);
+router.get('/all',userController.list);
 
 
-/** router.get('/getuser', (res, req) => {
 
-  // console.log(res.session.user.id)
-  // req.end()
-});**/
+
 
 module.exports = router;
