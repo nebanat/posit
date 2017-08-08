@@ -34,7 +34,7 @@ class GroupMessages extends React.Component{
             return this.props.messages.map(message=>(
                   <li className="collection-item avatar" key={message.content}>
                     <img alt="" className="circle"/>
-                    <strong className="title">@{message.user}<small><i className='teal-text'> 1:30PM </i></small>
+                    <strong className="title">@{message.userId}<small><i className='teal-text'> 1:30PM </i></small>
                     </strong>
                     <br/>
                     <p>{message.content}</p>

@@ -23,6 +23,7 @@
     "express": "~4.15.2",
     "express-session": "^1.15.3",
     "jsonwebtoken": "^7.4.1",
+    "jwt-decode": "^2.2.0",
     "md5": "^2.2.1",
     "mocha": "^3.4.2",
     "morgan": "~1.8.1",

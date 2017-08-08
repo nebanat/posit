@@ -9,15 +9,40 @@ class Register extends React.Component{
    constructor(props){
        super(props)
        this.registerUser=this.registerUser.bind(this);
+      
 
-    //    this.state={
-    //        loaderState:'',
-    //        submitButtonState:'waves-effect waves-light btn col s12'
-    //    }
+       this.state={
+           validationMessage:'',
+           successMessage:'',
+           show:false,
+       }
 
    }
+    
    registerUser(e){
        e.preventDefault();
+       //validations
+       if(!this.refs.username.value){
+            this.setState({validationMessage:'Please enter username'});
+            return;
+        }
+        else if(!this.refs.email.value){
+            this.setState({validationMessage:'Please enter Email'});
+            return;
+        }
+        else if(!this.refs.password.value){
+            this.setState({validationMessage:'Please enter password'});
+            return;
+        }
+        else if(this.refs.password.value.length < 8){
+            this.setState({validationMessage:'Password must be at least'});
+            return;
+        }
+        else if(this.refs.password.value!==this.refs.cpassword.value){
+           this.setState({validationMessage:"password fields must match "});
+           return 
+       }
+        
        
        axios({
         method: 'post',
@@ -32,12 +57,10 @@ class Register extends React.Component{
           }) 
         })
         .then((response)=> {
-            console.log(response.data);
-            
-            
+            this.setState({successMessage:response.data.message});
         })
         .catch((error)=> {
-         console.log(error);
+         this.setState({validationMessage:error.message});
         });
     }
 
@@ -55,13 +78,20 @@ class Register extends React.Component{
                         
                         <div className="card">
                             <div className="card-content">
+                                <p className='red-text center col s12'>{this.state.successMessage ? '   ':this.state.validationMessage}</p><br/>
+                                <p className='green-text center col s12'>
+                                {this.state.successMessage}
+                                <span><Link to='/login'>{this.state.successMessage ? ' Login here' : ' '}</Link></span></p>
+                                <br/>
                                 <span className="card-title center">Register</span>
                                 <form onSubmit={this.registerUser}>
                                     <div className='row'>
                                         <div className="input-field col s10 offset-s1">
                                             <input id="username" ref='username' type="text" className="validate" required/>
                                             <label>Username</label>
+                                            
                                          </div>
+                                        
                                     </div>
                                     <div className='row'>
                                         <div className="input-field col s10 offset-s1">
@@ -77,13 +107,13 @@ class Register extends React.Component{
                                     </div>
                                     <div className='row'>
                                         <div className="input-field col s10 offset-s1">
-                                            <input id="group_name" ref='groupName' type="password" className="validate" required/>
+                                            <input id="cpassword" ref='cpassword' type="password" className="validate" required/>
                                             <label>Confirm Password</label>
                                         </div>
                                     </div>
                                 <div className='row'>
                                     <div className="col s10 offset-s1 center">
-                                        <button onClick={this.registerUser} type='submit' name='action' 
+                                        <button type='submit' name='action' 
                                             className='waves-effect waves-light btn col s12'>
                                             Register
                                         </button>

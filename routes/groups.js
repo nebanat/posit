@@ -14,6 +14,7 @@ group.get('/all', groupController.list);
 group.post('/:id/user', groupController.addUserToGroup);
 group.post('/:id/message', groupController.addMessageToGroup);
 group.get('/:id/message', groupController.getGroupMessages);
+//group.get('/user',groupController.getUserGroups)
 
 
 module.exports = group;

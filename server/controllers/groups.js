@@ -1,10 +1,24 @@
-
+/*eslint-disable */
 import models from '../models';
+
+import decode from 'jwt-decode'
 
 
 module.exports = {
   create(req, res) {
     /** validates user input */
+    if(!req.body.name){
+      return res.status(402).send({
+        message:'Enter group name'
+      })
+    }
+    /**decodes token */
+    const token = req.body.token || req.query.token || req.headers['x-access-token'];
+     
+    const access= decode(token)
+    
+
+    //res.stop();
 
     return models.Group
       .create({
@@ -14,7 +28,7 @@ module.exports = {
       .then((group) => {
         // console.log(group.id)
         models.UsersGroups.create({
-          userId: req.decoded.id,
+          userId:access.user.id,
           groupId: group.id
         });
         res.status(201).send(group);
@@ -58,6 +72,10 @@ module.exports = {
       .catch(error => res.status(400).send(error));
   },
   addMessageToGroup(req, res) {
+    const token = req.body.token || req.query.token || req.headers['x-access-token'];
+     
+    const access= decode(token);
+
     return models.Group
       .findById(req.params.id)
       .then((group) => {
@@ -69,11 +87,13 @@ module.exports = {
         models.Message.create({
           content: req.body.content,
           priority: req.body.priority,
-          userId: req.session.user.id,
+          userId: access.user.id,
           groupId: group.id
         });
 
-        return res.send('Message sent');
+        return res.status(201).send({
+          'message':'Message sent'
+        });
       })
       .catch(error => res.status(400).send(error));
   },
@@ -81,9 +101,26 @@ module.exports = {
     return models.Group
       .findOne({ where: { id: req.params.id },
         include: [{ model: models.Message, as: 'messages' }] })
-      .then(group => res.status(200).send(group))
+      .then((group)=>{
+        if(!group){
+          return res.status(404).send({
+            'message':'Group not found'
+          })
+        }
+        return models.Message
+        .findAll({where:{groupId:group.id}})
+        .then((messages)=>{
+          return res.status(200).send(messages)
+        })
+        //return res.status(201).send(group.messages)
+      })
       .catch(error => res.status(400).send(error));
-  }
+  },
+  getUserGroups(req,res){
+    const token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+    console.log(token)
+  }  
 
 
 };

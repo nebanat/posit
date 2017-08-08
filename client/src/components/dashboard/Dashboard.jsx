@@ -29,7 +29,7 @@ class Dashboard extends React.Component{
                             </div>
                             <div className="col s7">
                                 <GroupInfo group={this.props.selectedGroup} />
-                                <GroupMessages messages={this.props.selectedGroup.messages}/>
+                                <GroupMessages messages={this.props.currentGroupMessages}/>
                             </div>
                         </div>
                     </div>
@@ -38,7 +38,8 @@ class Dashboard extends React.Component{
                     <div className='container'>
                         <div className='row'>
                             <div className='col m6 offset-m6'>
-                                <NewMessage/>
+                                <NewMessage group={this.props.selectedGroup}
+                                            createMessage={this.props.createMessage}/>
                             </div>
                         </div>
                     </div>
