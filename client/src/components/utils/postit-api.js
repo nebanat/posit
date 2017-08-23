@@ -32,8 +32,8 @@ function createNewGroup(groupName,groupDescription){
          "description":groupDescription
           }) 
         })
-
 }
+    
 function createNewMessage(message,priority,groupId){
     return axios({
         method: 'post',
