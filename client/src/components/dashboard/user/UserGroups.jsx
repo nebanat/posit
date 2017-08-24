@@ -34,11 +34,15 @@ class UserGroups extends React.Component{
         return(
             <div className=''>
                 
-                {this.props.groups.map(group=>(
+                {
+                
+                 this.props.groups.map(group=>(
                   <a key={group.id} onClick={()=>this.setSelectedGroup(group)}
                   href="#" className={this.showSelectedGroup(group.id)}>{group.name}</a>
                  
-                  ))} 
+                  ))
+                } 
+                
                
             </div>   
         )
