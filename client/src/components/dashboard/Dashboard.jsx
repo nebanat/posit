@@ -25,7 +25,8 @@ class Dashboard extends React.Component{
                                 </div>
                                <UserGroups groups={this.props.userGroups} 
                                             active={this.props.active}
-                                        selectGroup={this.props.selectGroup}/>
+                                        selectGroup={this.props.selectGroup}
+                                        />
                             </div>
                             <div className="col s7">
                                 <GroupInfo group={this.props.selectedGroup} />

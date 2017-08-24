@@ -49,7 +49,7 @@ class App extends React.Component{
     createGroup(groupName,groupDescription){
      createNewGroup(groupName,groupDescription).then((response)=> {
            this.setState({successMessage:'Group created successfully'});
-           this.getUserGroups();
+           //this.getUserGroups();
 
           browserHistory.push('/');
         })

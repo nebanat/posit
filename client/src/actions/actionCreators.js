@@ -1,21 +1,25 @@
 /*eslint-disable */
-const ADD_GROUP = 'ADD_GROUP';
-const ADD_MESSAGE = 'ADD_MESSAGE';
+import { getUserGroups } from '../components/utils/postit-api'
 
-export function addGroup(groupName, groupDescription) {
+export const FETCH_USER_GROUPS = 'FETCH_USER_GROUPS';
+
+export const fetchUserGroups=()=> 
+{
+   return (dispatch)=>{
+     return getUserGroups().then((response)=>{
+          
+      dispatch(fetchUserGroupsSuccess(response.data))
+
+  })
+
+   }
+}
+
+export const fetchUserGroupsSuccess=(groups)=>
+{
   return {
-    type: ADD_GROUP,
-    groupName,
-    groupDescription,
-  };
+    type: FETCH_USER_GROUPS,
+    groups
+  }
 }
 
-export function addMessage(message,priority,groupId) {
-    /*this will add a message */
-    return {
-        type:ADD_MESSAGE,
-        message,
-        priority,
-        groupId
-    }
-}

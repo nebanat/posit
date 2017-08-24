@@ -1,7 +1,13 @@
 /*eslint-disable */
-function groups(state = [], action) {
-    //console.log(state)
-    return state;
-}
+import { FETCH_USER_GROUPS } from '../actions/actionCreators';
 
-export default groups;
+
+export default (state = [], action) => {
+    switch(action.type)
+    {
+      case FETCH_USER_GROUPS:
+        return action.groups;
+      default:
+        return state     
+    }
+};

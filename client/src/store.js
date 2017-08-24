@@ -1,20 +1,25 @@
 /*eslint-disable */
-import { createStore } from 'redux';
+import { createStore,applyMiddleware } from 'redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { browserHistory } from 'react-router';
+import thunk from 'redux-thunk';
 import groups from './data/groups';
-import messages from './data/messages';
+import * as actionCreators from './actions/actionCreators'
 import rootReducers from './reducers';
 
 
-const defaultState = {
-  groups,
-  messages,
-};
+// const defaultState = {
+//   groups,
 
-const store = createStore(rootReducers, defaultState);
+// };
 
-export const history = syncHistoryWithStore(browserHistory, store);
+const configureStore =(initialState)=>
+{
+  return createStore(rootReducers, initialState,applyMiddleware(thunk));
+} 
 
+// export const history = syncHistoryWithStore(browserHistory, store);
 
-export default store;
+// store.dispatch(actionCreators.fetchUserGroups())
+
+export default configureStore;

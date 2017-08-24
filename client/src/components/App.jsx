@@ -7,7 +7,8 @@ import Main from './Main.jsx';
 function mapStateToProps(state) {
   return {
     groups: state.groups,
-    messages: state.messages,
+    message: state.messages
+    
   };
 }
 

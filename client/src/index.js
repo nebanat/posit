@@ -7,7 +7,15 @@ import Register from './components/auth/Register.jsx'
 import { Router, Route, browserHistory } from 'react-router';
 import { requireAuth } from './components/utils/AuthService';
 import {Provider} from 'react-redux'
-import store,{history} from './store'
+import configureStore from './store'
+import { syncHistoryWithStore } from 'react-router-redux';
+import * as actionCreators from './actions/actionCreators'
+
+const store = configureStore()
+
+const history = syncHistoryWithStore(browserHistory, store);
+
+store.dispatch(actionCreators.fetchUserGroups())
 
 const Root = () => {
   return (
