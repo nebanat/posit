@@ -114,7 +114,7 @@ class Register extends React.Component{
                                 <div className='row'>
                                     <div className="col s10 offset-s1 center">
                                         <button type='submit' name='action' 
-                                            className='waves-effect waves-light btn col s12'>
+                                            className='black btn col s12'>
                                             Register
                                         </button>
                                     </div>

@@ -82,9 +82,7 @@ module.exports = {
   list(req, res) {
     /** Extraneous method that returns users with all relationship */
     return models.User
-      .all({
-        include: [{ all: true }]
-      })
+      .all()
       .then(users => res.status(200).send(users))
       .catch(error => res.status(400).send({
         message: error.message

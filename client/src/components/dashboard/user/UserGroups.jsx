@@ -1,57 +1,28 @@
 /*eslint-disable */
-import React from 'react';
-import ReactDOM from 'react';
-import $ from 'Jquery';
-import PropTypes from 'prop-types';
+import React,{Component} from 'react';
 
-
-
-class UserGroups extends React.Component{
-    constructor(props){
-        super(props);
-        this.setSelectedGroup = this.setSelectedGroup.bind(this);
-        this.state={
-            //initializes the active group to null//
-            //active:null
-        }
-        
-    }
+class UserGroups extends Component
+{
     
-    setSelectedGroup(value){
-       //sends group to the main app//
-       this.props.selectGroup(value)
-
-    }
-    showSelectedGroup(value){
-        
-        if(this.props.active===value){
-            return 'collection-item active center'
-        }
-        return 'collection-item center'
-    }
-    
-    render(){
+    render()
+    {
+        //console.log(this.props.groups)
         return(
-            <div className=''>
+           <ul id="nav-mobile" className="side-nav fixed black ">
+                <h1 className="white-text">PostIt</h1>
                 
-                {
+                <li className="bold "><a href="#" className="white-text">Laravel Ninjas</a></li>
+                <li className="bold"><a href="#" className="white-text">Django girls</a></li>
+                <li className="bold"><a href="#" className="white-text">Forloop</a></li>
+                <li className="bold"><a href="#" className="white-text">Node Nigeia</a></li>
                 
-                 this.props.groups.map(group=>(
-                  <a key={group.id} onClick={()=>this.setSelectedGroup(group)}
-                  href="#" className={this.showSelectedGroup(group.id)}>{group.name}</a>
-                 
-                  ))
-                } 
-                
-               
-            </div>   
+          </ul>
         )
     }
 }
 
-UserGroups.defaultProps={
-  //active:'active'
-}
-
-
 export default UserGroups;
+
+
+
+

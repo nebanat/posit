@@ -3,7 +3,7 @@ import axios from 'axios';
 import { getAccessId, getAccessToken } from './AuthService';
 
 
-export { getUserGroups, createNewGroup, createNewMessage, getGroupMessages };
+export { getUserGroups, createNewGroup, createNewMessage, getGroupMessages,getAllUsers };
 
 function getUserGroups() {
   return axios({
@@ -56,5 +56,18 @@ function getGroupMessages(groupId) {
       'x-access-token': getAccessToken()
     }
   });
+}
+
+function getAllUsers (){
+    return axios({
+    method: 'GET',
+    url: 'http://localhost:3000/api/user/all',
+    headers: {
+      'Content-type': 'application/json; charset=utf-8',
+      'id-token': getAccessId(),
+      'x-access-token': getAccessToken()
+    }
+  });
+
 }
 

@@ -12,8 +12,8 @@ class App extends React.Component{
     constructor(props){
       super(props);
 
-      this.setSelectedGroup=this.setSelectedGroup.bind(this);
-      this.createGroup=this.createGroup.bind(this);
+      // this.setSelectedGroup=this.setSelectedGroup.bind(this);
+      // this.createGroup=this.createGroup.bind(this);
 
       this.state={
         userGroups:[],
@@ -93,12 +93,13 @@ class App extends React.Component{
      render(){
          return (
            <div>
-             <Dashboard {...this.state}
-             selectGroup={this.setSelectedGroup}
-             createGroup={this.createGroup}
-             createMessage={this.createMessage}
-             //userGroups={this.props.location.state.groups}
-             {...this.props}
+             <Dashboard
+            //   {...this.state}
+            //  selectGroup={this.setSelectedGroup}
+            //  createGroup={this.createGroup}
+            //  createMessage={this.createMessage}
+            //  //userGroups={this.props.location.state.groups}
+            //  {...this.props}
              />
            </div>
          );

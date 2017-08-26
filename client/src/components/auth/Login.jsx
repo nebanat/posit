@@ -73,7 +73,7 @@ class Login extends React.Component{
                                 <div className='row'>
                                     <div className="col s8 offset-s2 center">
                                          <button type='submit' name='action' 
-                                            className='waves-effect waves-light btn col s12'>
+                                            className='black btn col s12'>
                                             Login
                                         </button>
                                     </div>

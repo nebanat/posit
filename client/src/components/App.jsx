@@ -2,12 +2,13 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions/actionCreators.js';
-import Main from './Main.jsx';
+import Dashboard from './dashboard/Dashboard.jsx';
 
 function mapStateToProps(state) {
   return {
     groups: state.groups,
-    message: state.messages
+    messages: state.messages,
+    users:state.users
     
   };
 }
@@ -15,6 +16,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(actionCreators, dispatch);
 }
-const App = connect(mapStateToProps, mapDispatchToProps)(Main);
+const App = connect(mapStateToProps, mapDispatchToProps)(Dashboard);
 
 export default App;
