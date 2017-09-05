@@ -83,7 +83,7 @@ class Login extends React.Component{
                                 
                                 <div className='row'>
                                     <div className="col s8 offset-s2">
-                                        <Link to='' className="left"><i className="material-icons left">lock
+                                        <Link to='/password/reset' className="left"><i className="material-icons left">lock
                                         </i>Forgot Password</Link>
                                         <Link to='/register' className="right">Sign Up</Link>
                                     </div>

@@ -5,8 +5,8 @@ const messages = (state = [], action) => {
     switch(action.type)
     {
      case FETCH_MESSAGES:
-        console.log("messages fetched");
-        return state   
+        return action.messages
+        // return action.messages   
      default:
         return state     
     }

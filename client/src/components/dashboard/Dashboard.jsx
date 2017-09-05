@@ -3,25 +3,34 @@ import React from 'react';
 import UserGroups from './user/UserGroups.jsx';
 import Navigation from './Navigation.jsx'
 import { getUserGroups,getAllUsers } from '../utils/postit-api'
+import Loader from '../loader/Loader.js'
 
 
 
 class Dashboard extends React.Component{
+   
+    loadData()
+    {
+        this.props.fetchUserGroups();
+        
+        this.props.fetchUsers();
+    }
     componentWillMount()
     {
-      this.props.fetchUserGroups();
-      
-      this.props.fetchUsers();
-    //   getAllUsers().then((response)=>{
-    //     const users=response.data   
-    //     console.log(users)
-    // })
+        this.loadData();
+       
     }
+   
     render(){
+        
         return(
             <div>
                 <header>
-                    <Navigation {...this.props}/>
+                <Navigation {...this.props}/>
+                
+                {
+                    (this.props.groupIsLoading)?(<Loader/>):('')
+                }
                     <div className="row">
                         <div className="col s3">
                             <UserGroups {...this.props}/>
@@ -34,6 +43,7 @@ class Dashboard extends React.Component{
                            {React.cloneElement(this.props.children,this.props)}
                         </div>
                     </div>
+
                 </main>
             </div>
             

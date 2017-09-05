@@ -16,6 +16,7 @@ class Navigation extends React.Component{
                 <li><Link className="black-text" onClick={()=>logout()} to="/login">Logout</Link></li>
             </ul>
                 <nav className='white'>
+                    
                     <div className="nav-wrapper">
                         <ul id="nav-mobile" className="right hide-on-med-and-down">
                             <li>

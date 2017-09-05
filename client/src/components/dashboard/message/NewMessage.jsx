@@ -6,16 +6,25 @@ import {Button,Input} from 'react-materialize';
 
 class NewMessage extends React.Component{
    
-//    componentWillMount()
-//    {
-//        console.log(this.props.groups)
-//    }
+    handleOnSubmitMessage(e)
+    {
+        e.preventDefault();
+
+        let message = this.refs.content.value;
+        let priority = document.getElementById('priority').value;
+        let groupId = document.getElementById('group').value;
+
+        //alert(groupId);
+        this.props.createMessage(message,priority,groupId);
+
+        this.refs.messageForm.reset();
+    }
     render(){
-        console.log(this.props.groups)
+       
         return(  
             <div>
                 <h3>New Message</h3>
-                <form className="col s12">
+                <form ref="messageForm" onSubmit={this.handleOnSubmitMessage.bind(this)} className="col s12">
                     <div className="row">
                         <div className="input-field col s12">
                             <input id="content" ref="content" type="text" className="validate" required/>
@@ -24,11 +33,11 @@ class NewMessage extends React.Component{
                     </div>
                      <div className="row">
                         <div className='input-field col s12'>
-                            <Input className='' ref='group' id='group' type='select' label="Group" 
-                                defaultValue='3'>
-                                <option value='1'>Laravel Group</option>
-                                <option value='2'>Node Nigeria</option>
-                                <option value='3'>Django girls</option>
+                            <Input className='' ref='group' id='group' type='select' label="Group">
+                                {
+                                    this.props.groups.map((group,i)=>
+                                    <option value={group.id} key={i}>{group.name}</option> )
+                                }
                             </Input>
                         </div>
                     </div>
@@ -52,7 +61,7 @@ class NewMessage extends React.Component{
                         
                     </div>
                 </form>
-            </div>            
+            </div>          
             
         )
     }

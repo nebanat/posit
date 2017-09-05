@@ -1,59 +1,38 @@
 /*eslint-disable */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import SingleGroupMessages from './SingleGroupMessages';
+import Tester from '../../Tester.jsx';
 
 
 class GroupMessages extends React.Component{
     
-    messageTypeColor(value){
-        if(value===1){
-           return "new badge red darken-4 left secondary-content"
-        }
-        else if(value===2){
-            return "new badge yellow darken-4 left secondary-content"
-        }
-        else if(value===3){
-            return "new badge blue darken-4 left secondary-content"
-        }
+    componentWillMount()
+    {
+        this.props.fetchMessages(this.props.params.id);
     }
-    messageType(value){
-        if(value===1){
-           return "critical"
-        }
-        else if(value===2){
-            return "urgent"
-        }
-        else if(value===3){
-            return "normal"
-        }
-    }
-    noMessages(){
-        // const messages =this.props.message;
-         
-        if(this.props.messages){
-            return this.props.messages.map(message=>(
-                  <li className="collection-item avatar" key={message.content}>
-                    <img alt="" className="circle"/>
-                    <strong className="title">@{message.userId.message}<small><i className='teal-text'> {new Date(message.createdAt).toDateString()} </i></small>
-                    </strong>
-                    <br/>
-                    <p>{message.content}</p>
-                    <span className={this.messageTypeColor(message.priority)} data-badge-caption={this.messageType(message.priority)}>
-                    </span>
-                  </li>
-              ))
-        }
-        return <div className='center'>Group has no messages</div>
-        
-    }
+    
     render(){
+        const {id}=this.props.params;
+        const i = this.props.groups.findIndex((group)=>group.id ==
+            id);
+        
+        const group = this.props.groups[i];
+
+        //console.log(group.name);
+
         return (
             <div>
-               <ul className="collection">
-                   {this.noMessages()}
+                <h4>{group.name}</h4>
+                <ul className="collection">
+                {
+                    this.props.messages.map((message,i)=>
+                        <SingleGroupMessages message={message} key={i} i={i}/>)
+                }
                 </ul>
-            
+               
             </div>
+            
 
         );
     }

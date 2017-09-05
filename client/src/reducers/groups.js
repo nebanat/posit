@@ -1,5 +1,5 @@
 /*eslint-disable */
-import { FETCH_USER_GROUPS,GROUPS_HAS_ERROR,GROUPS_IS_LOADING } from '../actions/actionCreators';
+import { FETCH_USER_GROUPS,GROUPS_HAS_ERROR,GROUPS_IS_LOADING,CREATE_GROUP } from '../actions/actionCreators';
 
 
 const groups = (state = [], action) => {
@@ -7,6 +7,13 @@ const groups = (state = [], action) => {
     {
       case FETCH_USER_GROUPS:
         return action.groups;
+      case CREATE_GROUP:
+      //adds the new group to the current group state//
+        return [
+            ...state,{
+                name:action.name,
+                description:action.description
+            }];  
       default:
         return state     
     }
@@ -16,7 +23,7 @@ export const groupIsLoading=(state=false,action)=>{
     switch(action.type)
     {
         case GROUPS_IS_LOADING:
-            return action.isLoading
+            return action.groupIsLoading
         default:
             return state    
     }

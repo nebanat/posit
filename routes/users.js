@@ -28,7 +28,7 @@ router.get('/all',userController.list);
 
 router.get('/groups', userController.userExist);
 
-
+router.get('/get/groups',userController.getGroups)
 
 
 

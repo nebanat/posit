@@ -8,8 +8,8 @@ function mapStateToProps(state) {
   return {
     groups: state.groups,
     messages: state.messages,
-    users:state.users
-    
+    users:state.users,
+    groupIsLoading:state.groupIsLoading
   };
 }
 
