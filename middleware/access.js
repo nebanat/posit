@@ -10,4 +10,5 @@ export function getAccessId(){
   accessId=token.user.id;
   
   return accessId
-}  
+}
+

@@ -11,24 +11,33 @@ const jwt = require('jsonwebtoken');
 
 
 
-/* GET users listing. */
-
-
-router.post('/signup', userController.create);
+/* Authentication routes*/
+router.post('/signup', userController.signUp);
 
 router.post('/signin', userController.signIn);
 
+router.get('/tester',userController.getTest);
 
 
 
 
-router.use(authenticate);
 
+
+router.use(authenticate);//authentication middleware//
+
+//user routes using auth middleware//
 router.get('/all',userController.list);
 
-router.get('/groups', userController.userExist);
+router.get('/groups', userController.getAuthUserGroups);
 
-router.get('/get/groups',userController.getGroups)
+router.get('/:id/groups',userController.getUserGroups);
+
+router.get('/messages',userController.getAuthUserMessages)
+
+router.get('/:id/messages',userController.getUserMessages)
+
+
+router.post('/search',userController.searchUser);
 
 
 

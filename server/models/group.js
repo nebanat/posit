@@ -1,6 +1,4 @@
-
-
-module.exports = (sequelize, DataTypes) => {
+export default (sequelize, DataTypes) => {
   const Group = sequelize.define('Group', {
     name: {
       type: DataTypes.STRING,
@@ -16,21 +14,21 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       validate: {
         max: {
-          args: 300,
+          args: 3000,
           msg: 'Group description cannot exceed 300 characters'
         }
       }
     }
 
-  }, {
-    classMethods: {
-      associate(models) {
-        // associations can be defined here
-        Group.belongsToMany(models.User, { as: 'groupUsers', through: 'UsersGroups', foreignKey: 'groupId' });
-
-        Group.hasMany(models.Message, { foreignKey: 'userId', as: 'messages' });
-      }
-    }
   });
+  Group.associate=(models)=>{
+    
+    //relationship between groups and users//
+    Group.belongsToMany(models.User, { through:'UsersGroups', foreignKey: 'groupId' });
+    
+    //relationship betweeb group and messages//
+    Group.hasMany(models.Message, { foreignKey: 'userId', as: 'messages' });
+
+  }
   return Group;
 };

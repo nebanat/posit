@@ -1,14 +1,10 @@
-
-/*eslint-disable*/
-module.exports = (sequelize, DataTypes) => {
+export default (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     username: {
       type: DataTypes.STRING,
-      isUnique: true,
-      // validations for the username field defined//
+      unique:true,
       validate: {
         // validates that the username doesnt already exist//
-        isUnique: sequelize.validateIsUnique('username', 'Username already exist. please choose another one'),
         notEmpty: {
           args: true,
           msg: 'username cannot be empty'
@@ -17,12 +13,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     email: {
       type: DataTypes.STRING,
-      isUnique: true,
+      unique:true,
       // validations for the email field defined//
       validate: {
         // validates that the email doesnt already exist//
-        isUnique: sequelize
-          .validateIsUnique('email', 'Email already exist'),
         isEmail: {
           args: true,
           msg: 'A valid email is required',
@@ -49,17 +43,15 @@ module.exports = (sequelize, DataTypes) => {
 
       }
     }
-  }, {
-    classMethods: {
-      associate(models) {
-        // associations can be defined here
-        User.belongsToMany(models.Group, { as: 'userGroups',
-          through: 'UsersGroups',
-          foreignKey: 'userId' });
-
-        User.hasMany(models.Message, { foreignKey: 'userId', as: 'messages' });
-      }
-    }
   });
+  User.associate=function(models){
+    //relationship between users and groups//
+    User.belongsToMany(models.Group, {through: 'UsersGroups',foreignKey: 'userId' });
+
+    //relationship between user and messages//
+    User.hasMany(models.Message, { foreignKey: 'userId'});
+
+  }
   return User;
 };
+

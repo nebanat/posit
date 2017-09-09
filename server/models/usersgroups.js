@@ -1,6 +1,4 @@
-
-
-module.exports = (sequelize, DataTypes) => {
+export default (sequelize, DataTypes) => {
   const UsersGroups = sequelize.define('UsersGroups', {
     userId: {
       type: DataTypes.INTEGER,
@@ -10,12 +8,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     }
-  }, {
-    // classMethods: {
-    // associate(models) {
-    // associations can be defined here
-    // }
-    // }
   });
   return UsersGroups;
 };

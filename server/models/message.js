@@ -1,6 +1,4 @@
-
-
-module.exports = (sequelize, DataTypes) => {
+export default (sequelize, DataTypes) => {
   const Message = sequelize.define('Message', {
     content: {
       type: DataTypes.TEXT,
@@ -43,14 +41,15 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
 
-  }, {
-    classMethods: {
-      associate(models) {
-        // associations can be defined here
-        Message.belongsTo(models.User, { foreignKey: 'userId', as: 'message' });
-        Message.belongsTo(models.Group, { foreignKey: 'groupId', as: 'user' });
-      }
-    }
   });
+  Message.associate=function(models)
+  {
+    //relationship between messages and user//
+    Message.belongsTo(models.User, { foreignKey: 'userId', as: 'message' });
+    
+    //relationship between messages and group//
+    Message.belongsTo(models.Group, { foreignKey: 'groupId', as: 'user' });
+  }
   return Message;
 };
+
