@@ -1,7 +1,7 @@
 /*eslint-disable */
 import models from '../models';
 import decode from 'jwt-decode';
-
+import hello from '../hello'
 
 
 
@@ -190,9 +190,11 @@ export default {
    * group test delete after usage
    */
   groupTest(req,res){
-      return res.status(200).send({
+    hello.message()  
+    return res.status(200).send({
         message:"test reached"
       })
+      
     }
     
 
