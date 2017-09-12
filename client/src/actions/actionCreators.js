@@ -24,7 +24,7 @@ export const fetchUserGroups=()=>
 
      return getUserGroups().then((response)=>{
           
-      dispatch(fetchUserGroupsSuccess(response.data['userGroups']))
+      dispatch(fetchUserGroupsSuccess(response.data))
 
       dispatch(groupsIsLoading(false))
 

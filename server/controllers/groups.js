@@ -1,3 +1,4 @@
+/*eslint-disable */
 import decode from 'jwt-decode';
 import models from '../models';
 import hello from '../hello';
@@ -129,16 +130,22 @@ export default {
   // Get the messages for a group
   getGroupMessages(req, res) {
     return models.Group
-      .findOne({ where: { id: req.params.id },
-        include: [{ model: models.Message, as: 'messages' }] })
+      .findById(req.params.id)
       .then((group) => {
+        console.log(group.name);
         if (!group) {
           return res.status(404).send({
             message: 'Group not found'
           });
         }
+      
         // return group messages//
-        group.getMessages().then(messages => res.status(200).send(messages));
+        //return group.getMessages().then(messages => res.status(200).send(messages));
+        return models.Message
+              .findAll({ where: { groupId: req.params.id } })
+              .then(messages=>
+                res.status(200).send(messages)
+              )
       })
       .catch(error => res.status(400).send(error));
   },

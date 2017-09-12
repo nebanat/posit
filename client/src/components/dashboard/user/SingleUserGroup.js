@@ -1,35 +1,25 @@
-/*eslint-disable */
 import React from 'react';
-import { findDOMNode } from 'react-dom';
-import $ from 'jquery';
-import Chips, { Chip } from 'react-chips';
-//import 'materialize-css';
-//import 'materialize-css/dist/css/materialize.min.css';
+import {Link} from 'react-router';
 
-class Tester extends React.Component
+
+class SingleUserGroup extends React.Component
 {
     constructor(props)
     {
         super(props);
         
-        
     }
     
-    
-   
     render()
     {
        
         return(
             <div>
-                <h1>Edited test</h1>
-
-                <div className="row">
-                    <div className="col s12 m6">
+                <div className="col s12 m6">
                         <div className="card white darken-1">
                             <div className="card-content black-text">
-                            <span className="card-title">Group Name</span>
-                                <p>Group description</p>
+                            <span className="card-title"><Link to={`/group/${this.props.group.id}/messages`} className="purple-text darken-4">{this.props.group.name}</Link></span>
+                                <p>{this.props.group.description}</p>
                             </div>
                             <div className="card-action">
                                 <div className="stats">
@@ -37,14 +27,10 @@ class Tester extends React.Component
                                 </div>
                             </div>
                         </div>
-                    </div>
-                   
-                    
                 </div>
-             
             </div>
            )
     }
 }
 
-export default Tester;
+export default SingleUserGroup;

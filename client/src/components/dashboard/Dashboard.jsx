@@ -1,8 +1,8 @@
 /*eslint-disable */
 import React from 'react';
-import UserGroups from './user/UserGroups.jsx';
-import Navigation from './Navigation.jsx'
-import { getUserGroups,getAllUsers } from '../utils/postit-api'
+import SideNav from '../navigation/SideNav.jsx';
+import Navigation from '../navigation/Navigation.jsx'
+import { getUserGroups,getAllUsers,getGroupMessages } from '../utils/postit-api'
 import Loader from '../loader/Loader.js'
 
 
@@ -33,7 +33,7 @@ class Dashboard extends React.Component{
                 }
                     <div className="row">
                         <div className="col s3">
-                            <UserGroups {...this.props}/>
+                            <SideNav {...this.props}/>
                         </div>
                     </div>
                 </header>

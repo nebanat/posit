@@ -1,7 +1,7 @@
 /*eslint-disable */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import GroupInfo from './group/GroupInfo.jsx';
+//import GroupInfo from './group/GroupInfo.jsx';
 import { Link } from 'react-router';
 import { isLoggedIn, logout } from '../utils/AuthService'
 
@@ -20,36 +20,23 @@ class Navigation extends React.Component{
                     <div className="nav-wrapper">
                         <ul id="nav-mobile" className="right hide-on-med-and-down">
                             <li>
-                               {
-                                    (isLoggedIn())?(<Link to="/" className="black-text">Home</Link>):('')
-                               }
+                                <Link to="/home" className="black-text">Home</Link>
                             </li>
                             <li>
                                {
-                                    (isLoggedIn())?(<Link to="/message" className="black-text">New Message</Link>):('')   
-                               }
-                                
-                            </li>
-                            <li>
-                               {
-                                    (isLoggedIn())?(<Link to="/new/group" className="black-text">New Group</Link>):('')
+                                 (isLoggedIn())?(<Link to="/" className="black-text">Dashboard</Link>):('')
                                }
                             </li>
-                            <li>
-                               {
-                                   (isLoggedIn())?(<Link to="/test" className="black-text">Tester</Link>):('')
-                               }
-                                
-                            </li>
+                            
                             <li>
                             {
-                                (!isLoggedIn())?(<Link className="black-text"  to="/login">Login</Link>):('')
+                                (!isLoggedIn())?(<Link className="black-text"  to="/login">Log In</Link>):('')
                             }
                             
                             </li>
                             <li>
                             {
-                                (!isLoggedIn())?(<Link className="black-text" to="/register">Register</Link>):('')
+                                (!isLoggedIn())?(<Link className="btn white black-text" to="/register">Get Started</Link>):('')
                             }
                             </li>
                             <li>

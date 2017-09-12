@@ -1,6 +1,6 @@
 /*eslint-disable */
 import React,{Component} from 'react';
-import Navigation from '../dashboard/Navigation.jsx'
+import Navigation from '../navigation/Navigation.jsx'
 import { Link } from 'react-router';
 
 class ResetPassword extends Component

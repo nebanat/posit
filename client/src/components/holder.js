@@ -78,5 +78,17 @@ UserGroups.defaultProps={
 
 //new message//
 
+//user groups//
+            <ul id="nav-mobile" className="side-nav fixed purple darken-4">
+                    <h3 className="white-text">PostIt</h3>
+                    {
+                        this.props.groups.map((group,i)=>
+                            <li className="bold" key={i}>
+                                <Link to={`/group/${group.id}/messages`} className="white-text">{group.name}</Link>
+                            </li>
+                        )
+                    }
+                </ul>
+
 
 
