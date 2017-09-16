@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React,{Component} from 'react'
 import {Link} from 'react-router'
 import Navigation from '../../navigation/Navigation.jsx'

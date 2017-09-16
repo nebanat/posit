@@ -2,7 +2,7 @@ export default (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     username: {
       type: DataTypes.STRING,
-      unique:true,
+      unique: true,
       validate: {
         // validates that the username doesnt already exist//
         notEmpty: {
@@ -13,7 +13,7 @@ export default (sequelize, DataTypes) => {
     },
     email: {
       type: DataTypes.STRING,
-      unique:true,
+      unique: true,
       // validations for the email field defined//
       validate: {
         // validates that the email doesnt already exist//
@@ -28,6 +28,14 @@ export default (sequelize, DataTypes) => {
 
       }
 
+    },
+    resetPassToken: {
+      type: DataTypes.STRING,
+      unique: true
+    },
+    expirePassToken: {
+      type: DataTypes.STRING,
+      unique: false
     },
     password: {
       type: DataTypes.STRING,
@@ -44,14 +52,13 @@ export default (sequelize, DataTypes) => {
       }
     }
   });
-  User.associate=function(models){
-    //relationship between users and groups//
-    User.belongsToMany(models.Group, {through: 'UsersGroups',foreignKey: 'userId' });
+  User.associate = function (models) {
+    // relationship between users and groups//
+    User.belongsToMany(models.Group, { through: 'UsersGroups', foreignKey: 'userId' });
 
-    //relationship between user and messages//
-    User.hasMany(models.Message, { foreignKey: 'userId'});
-
-  }
+    // relationship between user and messages//
+    User.hasMany(models.Message, { foreignKey: 'userId' });
+  };
   return User;
 };
 

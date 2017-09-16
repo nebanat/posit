@@ -1,5 +1,9 @@
 /*eslint-disable */
-import { FETCH_USERS, USERS_IS_LOADING , USERS_HAS_ERROR } from '../actions/actionCreators';
+import { FETCH_USERS, 
+        USERS_IS_LOADING, 
+        USERS_HAS_ERROR,
+        FETCH_SEARCH_USERS,
+        ADD_USER_TO_GROUP } from '../actions/actionCreators';
 
 const users = (state = [], action) => {
     switch(action.type)
@@ -29,4 +33,14 @@ export const userHasError=(state=false,action)=>{
             return state    
     }
 }
+export const searchUsers=(state=[],action)=>{
+    switch(action.type)
+    {
+        case FETCH_SEARCH_USERS:
+            return action.searchUsers
+        default:
+            return state    
+    }
+}
+
 export default users;

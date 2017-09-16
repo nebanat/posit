@@ -1,7 +1,13 @@
 import decode from 'jwt-decode';
+import 'url-search-params-polyfill';
 import models from '../models';
+import userHelper from '../helpers/user';
+import { transporter } from '../mail/nodemailer';
+
 
 const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
+const randomstring = require('randomstring');
 /* eslint-disable import/no-extraneous-dependencies */
 const md5 = require('md5');
 
@@ -199,7 +205,7 @@ export default {
           $like: `%${req.body.query}%`,
         }
       },
-      attributes: ['id', 'username', 'email']
+      attributes: ['id', 'username', 'email'],
 
       })
         .then((users) => {
@@ -213,9 +219,125 @@ export default {
         })
         .catch(error => res.status(402).send(error));
     }
-    res.status(402).send({
+    return res.status(402).send({
       message: 'please enter a search text'
     });
+  },
+
+  // search and add users not in a group
+  searchUsersNotInAGroup(req, res) {
+    const groupId = req.body.groupId;
+    const query = req.body.query;
+
+    models.Group
+      .findById(groupId)
+      .then((group) => {
+        if (!group) {
+          return res.status(400).send({
+            message: 'Group was not found'
+          });
+        }
+
+        group.getUsers().then((users) => {
+          const members = users.map(user => user.id);
+
+          models.User.findAll({ where: {
+            username: {
+              $like: `%${query}%`,
+            },
+            $not: [
+              { id: members }
+            ]
+          },
+          attributes: {
+            exclude: ['password']
+          }
+          })
+            // nusers represent users not in a group
+            .then((nUsers) => {
+              if (!nUsers.length) {
+                return res.status(204).send({
+                  message: 'No user found'
+                });
+              }
+              return res.status(200).send(nUsers);
+            });
+        });
+      });
+  },
+  sendResetPasswordEmail(req, res) {
+    const email = req.body.email;
+
+    userHelper.userEmailExist(email)
+      .then((user) => {
+        if (!user) {
+          return res.status(404).send({
+            message: 'User does not exist in our records'
+          });
+        }
+
+        const token = randomstring.generate();
+        console.log(token);
+        // updates the user details with tokena and expiry date
+        user.update({
+          resetPassToken: token,
+          expirePassToken: Date.now() + 360000
+        }).then((updatedUser) => {
+          const mailOptions = {
+            from: '"Post It" <noreply@postit.com',
+            to: updatedUser.email,
+            subject: 'PostIt test',
+            text: `Hello Aaron! 
+                The link to reset your password is below
+                http://localhost:3000/api/user/password_reset?token=${token}`
+          };
+
+          transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+              return res.send({
+                message: 'Unable to send email something went wrong'
+              });
+            }
+
+            return res.status(200).send({
+              message: 'Reset password link has been sent to your account'
+            });
+          });
+        });
+      });
+  },
+  resetPassword(req, res) {
+    const resetToken = req.body.resetToken;
+    const expiryDate = Date.now() - req.body.expiryDate;
+    const password = req.body.password;
+
+    // checks if token has expired or no token was passed
+    if (expiryDate > 360000 || !resetToken) {
+      return res.status(400).send({
+        message: 'Invalid Token'
+      });
+    }
+
+    // checks if there is user with such token// 
+    models.User.findOne({
+      where: {
+        resetPassToken: resetToken
+      }
+    })
+      .then((user) => {
+        if (!user) {
+          return res.status(200).send({
+            message: 'User does not exist'
+          });
+        }
+        user.update({
+          password: md5(password),
+          resetPassToken: '',
+          expirePassToken: ''
+        }).then(() => res.status(201).send({
+          message: 'Password reset successful'
+        }));
+      });
   },
 
   getTest(req, res) {

@@ -39,7 +39,7 @@ class Login extends React.Component{
         })
         .catch((error)=> {
             //when things go south//
-            this.setState({validationMessage:'Invalid Username or Password'})
+            this.setState({validationMessage:"Invalid username or password"})
         });
     }
 

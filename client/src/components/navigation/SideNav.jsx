@@ -1,7 +1,7 @@
 /*eslint-disable */
 import React,{Component} from 'react';
 //import Initialize from '../Initialize.js';
-import { Link } from 'react-router';
+import { Link,browserHistory } from 'react-router';
 
 class SideNav extends Component
 {
@@ -16,9 +16,9 @@ class SideNav extends Component
                         <li className="bold">
                             <Link to="/" className="white-text">Dashboard</Link>
                             <Link to="/groups" className="white-text">Your Groups</Link>
-                            <Link to="/new/group" className="white-text">New Group</Link>
                             <Link to="/message" className="white-text">New Message</Link>
                             <Link to="/test" className="white-text">Tester</Link>
+                            <a onClick={()=>browserHistory.goBack()} className="btn-small waves-effect waves-light orange white-text">Go Back</a>
                          </li>
                         
                     

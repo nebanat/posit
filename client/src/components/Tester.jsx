@@ -1,47 +1,38 @@
 /*eslint-disable */
 import React from 'react';
-import { findDOMNode } from 'react-dom';
-import $ from 'jquery';
-import Chips, { Chip } from 'react-chips';
-//import 'materialize-css';
-//import 'materialize-css/dist/css/materialize.min.css';
+import {Collapsible,CollapsibleItem} from 'react-materialize'
+
 
 class Tester extends React.Component
 {
     constructor(props)
     {
         super(props);
-        
-        
     }
-    
-    
-   
     render()
     {
        
         return(
             <div>
-                <h1>Edited test</h1>
-
+                <h4>Test Page</h4>
                 <div className="row">
-                    <div className="col s12 m6">
-                        <div className="card white darken-1">
-                            <div className="card-content black-text">
-                            <span className="card-title">Group Name</span>
-                                <p>Group description</p>
-                            </div>
-                            <div className="card-action">
-                                <div className="stats">
-                                    <i className="tiny material-icons">access_time</i>  Created 2 days ago
-                                </div>
-                            </div>
-                        </div>
+                    <div className="col s4">
+                    <Collapsible>
+                        <CollapsibleItem header='Members' icon='filter_drama'>
+                            Lorem ipsum dolor sit amet.
+                        </CollapsibleItem>
+                        <CollapsibleItem header='Second' icon='place'>
+                            Lorem ipsum dolor sit amet.
+                        </CollapsibleItem>
+                        <CollapsibleItem header='Third' icon='whatshot'>
+                            Lorem ipsum dolor sit amet.
+                        </CollapsibleItem>
+                    </Collapsible>  
+
                     </div>
-                   
-                    
                 </div>
-             
+                
+                
             </div>
            )
     }

@@ -7,13 +7,11 @@ class AuthUserGroups extends React.Component
     constructor(props)
     {
         super(props);
-        
     }
     
     render()
     {
-       
-        return(
+       return(
             <div>
                 <h4>Your Groups</h4>
 

@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import groups, { groupIsLoading, groupHasError } from './groups';
+import groups, { groupIsLoading, groupHasError, groupUsers } from './groups';
 import messages from './messages';
-import users, { userIsLoading, userHasError } from './users';
+import users, { userIsLoading, userHasError, searchUsers } from './users';
 
 
 const rootReducers = combineReducers({
@@ -13,6 +13,8 @@ const rootReducers = combineReducers({
   userHasError,
   groupIsLoading,
   groupHasError,
+  groupUsers,
+  searchUsers,
   routing: routerReducer
 });
 

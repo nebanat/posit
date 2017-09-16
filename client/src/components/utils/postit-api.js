@@ -3,7 +3,15 @@ import axios from 'axios';
 import { getAccessId, getAccessToken } from './AuthService';
 
 
-export { getUserGroups, createNewGroup, createNewMessage, getGroupMessages,getAllUsers };
+export { getUserGroups,
+   createNewGroup, 
+   createNewMessage, 
+   getGroupMessages,
+   getAllUsers,
+   getGroupUsers,
+   getSearchedUsers,
+   addUserToGroup,
+   getSearchedUsersNotInAGroup };
 
 function getUserGroups() {
   return axios({
@@ -70,4 +78,62 @@ function getAllUsers (){
   });
 
 }
+
+function getGroupUsers (groupId){
+    return axios({
+    method: 'GET',
+    url: `http://localhost:3000/api/group/${groupId}/users`,
+    headers: {
+      'Content-type': 'application/json; charset=utf-8',
+      'id-token': getAccessId(),
+      'x-access-token': getAccessToken()
+    }
+  });
+
+}
+
+function getSearchedUsers(user){
+  return axios({
+    method: 'post',
+    url: `http://localhost:3000/api/user/search`,
+    headers: {
+      'Content-type': 'application/json; charset=utf-8',
+      'x-access-token': getAccessToken()
+    },
+    data: JSON.stringify({
+      query:user,
+    })
+  }); 
+}
+
+function getSearchedUsersNotInAGroup(groupId,user){
+  return axios({
+    method: 'post',
+    url: `http://localhost:3000/api/user/get/search`,
+    headers: {
+      'Content-type': 'application/json; charset=utf-8',
+      'x-access-token': getAccessToken()
+    },
+    data: JSON.stringify({
+      groupId:groupId,
+      query:user
+    })
+  }); 
+}
+
+function addUserToGroup(groupId,userId) {
+  return axios({
+    method: 'post',
+    url: `http://localhost:3000/api/group/${groupId}/user`,
+    headers: {
+      'Content-type': 'application/json; charset=utf-8',
+      'x-access-token': getAccessToken()
+    },
+    data: JSON.stringify({
+      userId: userId,
+    })
+  });
+}
+
+
 

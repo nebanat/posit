@@ -19,11 +19,16 @@ router.get('/tester', userController.getTest);
 
 router.get('/all', userController.list);
 
+router.post('/get/search', userController.searchUsersNotInAGroup);
+
+router.post('/password/reset', userController.sendResetPasswordEmail);
+
+router.post('/password_reset', userController.resetPassword);
+
 
 router.use(authenticate);// authentication middleware//
 
 // user routes using auth middleware//
-
 
 router.get('/groups', userController.getAuthUserGroups);
 
@@ -33,8 +38,10 @@ router.get('/messages', userController.getAuthUserMessages);
 
 router.get('/:id/messages', userController.getUserMessages);
 
-
 router.post('/search', userController.searchUser);
+
+
+// router.post('/get/search', userController.searchUsersNotInAGroup);
 
 
 module.exports = router;

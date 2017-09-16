@@ -1,8 +1,13 @@
 /*eslint-disable */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Collapsible, CollapsibleItem } from 'react-materialize';
 import SingleGroupMessages from './SingleGroupMessages';
 import Tester from '../../Tester.jsx';
+import GroupUsers from '../group/GroupUsers'
+import GroupSideBar from '../group/GroupSideBar'
+
+
 
 
 class GroupMessages extends React.Component{
@@ -10,6 +15,8 @@ class GroupMessages extends React.Component{
     componentWillMount()
     {
         this.props.fetchMessages(this.props.params.id);
+
+        this.props.fetchGroupUsers(this.props.params.id);
     }
     
     render(){
@@ -23,14 +30,22 @@ class GroupMessages extends React.Component{
 
         return (
             <div>
-                <h4>{group.name}</h4>
-                <ul className="collection">
-                {
-                    this.props.messages.map((message,i)=>
-                        <SingleGroupMessages message={message} key={i} i={i}/>)
-                }
-                </ul>
-               
+                <div className="row">
+                    <div className="col s8">
+                        <h4>{group.name}</h4>
+                        <ul className="collection">
+                            {
+                                this.props.messages.map((message,i)=>
+                                    <SingleGroupMessages message={message} key={i} i={i}/>)
+                            }
+                        </ul>
+                    </div>
+                    <div className="col s4">
+                      <GroupSideBar {...this.props}
+                                    group={group}/>
+                    </div>
+                </div>
+                
             </div>
             
 

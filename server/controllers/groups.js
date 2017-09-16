@@ -78,7 +78,8 @@ export default {
               group.addUser(userId);
 
               return res.status(201).send({
-                message: 'User successfully added to group'
+                message: 'User successfully added to group',
+                user:{username:user.username,email:user.email}
               });
             });
           });
