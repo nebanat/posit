@@ -1,31 +1,24 @@
-const express = require('express');
+/*eslint-disable */
+import express from 'express';
+import authenticate from '../middleware/authenticate.js';
+
 const group = express.Router();
-const Group =require('../server/models').Group
-const UsersGroups =require('../server/models').UsersGroups
-//const md5 = require('md5');
+const groupController = require('../server/controllers').groups;
 
-const groupController= require('../server/controllers').groups
-
+group.get('/gtest',groupController.groupTest);
+group.get('/all', groupController.list);
 
 
-
-
-group.use((req,res,next)=>{
-  if(!req.session.user){
-    return res.status(401).send();
-  }
-
-  //return res.status(200).send('Welcome to super secret key')
-   next();
-})
+group.use(authenticate);
 
 /* GET users listing. */
-group.post('/',groupController.create);
-group.get('/all',groupController.list)
-group.post('/:id/user',groupController.addUserToGroup)
-group.post('/:id/message',groupController.addMessageToGroup)
-group.get('/:id/message',groupController.getGroupMessages)
-
+group.post('/', groupController.create);
+//group.get('/all', groupController.list);
+group.post('/:id/user', groupController.addUserToGroup);
+group.post('/:id/message', groupController.addMessageToGroup);
+group.get('/:id/message', groupController.getGroupMessages);
+group.get('/:id/users',groupController.getGroupUsers);
+//group.get('/user',groupController.getUserGroups)
 
 
 module.exports = group;

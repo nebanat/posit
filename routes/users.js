@@ -1,43 +1,47 @@
+import authenticate from '../middleware/authenticate';
+
 const express = require('express');
+
 const router = express.Router();
-const md5 = require('md5');
 
-const userController= require('../server/controllers').users
+const userController = require('../server/controllers').users;
+
+// const jwt = require('jsonwebtoken');
 
 
-/* GET users listing. */
-router.get('/',(req, res, next)=> {
-  res.send('respond with a resource');
-});
+/* Authentication routes */
+router.post('/signup', userController.signUp);
 
-router.post('/signup',userController.create);
+router.post('/signin', userController.signIn);
 
-router.post('/signin',userController.signIn);
+router.get('/tester', userController.getTest);
 
-router.get('/hash',userController.hashP)
-
-router.use((req,res,next)=>{
-  if(!req.session.user){
-    return res.status(401).send();
-  }
-
-  //return res.status(200).send('Welcome to super secret key')
-   next();
-})
-
-router.get('/signout',(req,res)=>{
-   req.session.destroy(()=>{
-     console.log('Logged Out')
-   })
-  res.end();
-})
 
 router.get('/all', userController.list);
 
-router.get('/getuser',(res,req)=>{
-  
-  // console.log(res.session.user.id)
-  // req.end()
-})
+router.post('/get/search', userController.searchUsersNotInAGroup);
+
+router.post('/password/reset', userController.sendResetPasswordEmail);
+
+router.post('/password_reset', userController.resetPassword);
+
+
+router.use(authenticate);// authentication middleware//
+
+// user routes using auth middleware//
+
+router.get('/groups', userController.getAuthUserGroups);
+
+router.get('/:id/groups', userController.getUserGroups);
+
+router.get('/messages', userController.getAuthUserMessages);
+
+router.get('/:id/messages', userController.getUserMessages);
+
+router.post('/search', userController.searchUser);
+
+
+// router.post('/get/search', userController.searchUsersNotInAGroup);
+
 
 module.exports = router;

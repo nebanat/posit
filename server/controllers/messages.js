@@ -1,6 +1,6 @@
-const Message =require('../models').Message
-//const Group =require('../models').Group
-//const md5 = require('md5');
+// const Message = require('../models').Message;
+// const Group =require('../models').Group
+// const md5 = require('md5');
 
 // module.exports = {
 //   create(req, res) {

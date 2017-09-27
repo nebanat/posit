@@ -1,6 +1,7 @@
-'use strict';
+/*eslint-disable*/
+
 module.exports = {
-  up: function(queryInterface, Sequelize) {
+  up(queryInterface, Sequelize) {
     return queryInterface.createTable('Users', {
       id: {
         allowNull: false,
@@ -9,15 +10,27 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       username: {
-        allowNull:false,
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING,
+        unique:true,
       },
       email: {
-        allowNull:false,
+        allowNull: false,
+        unique:true,
         type: Sequelize.STRING
       },
       password: {
-        allowNull:false,
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      resetPassToken: {
+        allowNull: true,
+        unique:true,
+        type: Sequelize.STRING
+      },
+      expirePassToken: {
+        allowNull: true,
+        unique:false,
         type: Sequelize.STRING
       },
       createdAt: {
@@ -30,7 +43,6 @@ module.exports = {
       }
     });
   },
-  down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('Users');
-  }
+  down: queryInterface => queryInterface.dropTable('Users'),
+
 };
