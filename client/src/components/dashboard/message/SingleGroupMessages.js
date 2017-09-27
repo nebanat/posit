@@ -1,5 +1,6 @@
 /*eslint-disable */
 import React from 'react';
+import GroupUsers from '../group/GroupUsers';
 
 class SingleGroupMessages extends React.Component
 {
@@ -31,18 +32,18 @@ class SingleGroupMessages extends React.Component
         const {message,i} =this.props;
         
         return(
-            <li className="collection-item avatar">
-                <img alt="" className="circle"/>
-                <strong className="title">@djcranker<small><i className='teal-text'>
-                    {new Date(message.createdAt).toDateString()} </i></small>
-                </strong>
-                <br/>
-                <p>{message.content}</p>
-                <span className={this.messageTypeColor(message.priority)} 
-                    data-badge-caption={this.messageType(message.priority)}>
-                </span>
-            </li>
-        )
+                <li className="collection-item avatar">
+                    <img alt="" className="circle"/>
+                    <strong className="title">@djcranker<small><i className='purple-text darken-4'>
+                        {new Date(message.createdAt).toDateString()} </i></small>
+                    </strong>
+                    <br/>
+                    <p>{message.content}</p>
+                    <span className={this.messageTypeColor(message.priority)} 
+                        data-badge-caption={this.messageType(message.priority)}>
+                    </span>
+                </li>
+            )
     }
 }
 export default SingleGroupMessages;

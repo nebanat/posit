@@ -19,6 +19,11 @@ export function requireAuth(nextState, replace) {
     replace({ pathname: '/login' });
   }
 }
+export function noRequireAuth(nextState,replace){
+    if(isLoggedIn()){
+      replace({pathname:'/dashboard'});
+    }
+}
 export function clearAccessToken(){
     localStorage.removeItem('POSTIT_ACCESS_TOKEN');
 }

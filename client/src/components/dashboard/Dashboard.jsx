@@ -1,9 +1,9 @@
 /*eslint-disable */
 import React from 'react';
-import UserGroups from './user/UserGroups.jsx';
-import Navigation from './Navigation.jsx'
-import { getUserGroups,getAllUsers } from '../utils/postit-api'
-import Loader from '../loader/Loader.js'
+import SideNav from '../navigation/SideNav.jsx';
+import Navigation from '../navigation/Navigation.jsx'
+import { getSearchedUser } from '../utils/postit-api'
+import Loader from '../loader/Loader.jsx'
 
 
 
@@ -18,6 +18,10 @@ class Dashboard extends React.Component{
     componentWillMount()
     {
         this.loadData();
+
+        // getSearchedUser('Aa').then(response=>{
+        //     console.log(response.data)
+        // })
        
     }
    
@@ -33,13 +37,13 @@ class Dashboard extends React.Component{
                 }
                     <div className="row">
                         <div className="col s3">
-                            <UserGroups {...this.props}/>
+                            <SideNav {...this.props}/>
                         </div>
                     </div>
                 </header>
                 <main>
                     <div className="row">
-                        <div className="col s7 push-s3">
+                        <div className="col s9 push-s3">
                            {React.cloneElement(this.props.children,this.props)}
                         </div>
                     </div>

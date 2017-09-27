@@ -54,7 +54,7 @@ class NewMessage extends React.Component{
                     <div className="row">
                         <div className="col m3">
                             <button type='submit' name='action' 
-                                    className='black btn col s12'>
+                                    className='purple darken-4 btn col s12'>
                                         PostIt
                                 </button>
                         </div>

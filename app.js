@@ -8,6 +8,8 @@ const md5 = require('md5');
 // const bcrypt = require('bcrypt');
 const session = require('express-session');
 const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
+const randomstring = require('randomstring')
 
 const index = require('./routes/index');
 const users = require('./routes/users');
