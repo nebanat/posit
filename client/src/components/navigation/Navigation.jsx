@@ -32,7 +32,7 @@ class Navigation extends React.Component{
                                     </li>
                                     <li>
                                     {
-                                        (isLoggedIn())?(<Link to="/" className="black-text">Dashboard</Link>):('')
+                                        (isLoggedIn())?(<Link to="/dashboard" className="black-text">Dashboard</Link>):('')
                                     }
                                     </li>
                                     <li>
@@ -41,7 +41,6 @@ class Navigation extends React.Component{
                                                             New Group</Link>):('')
                                     }
                                     </li>
-                                    
                                     <li>
                                     {
                                         (!isLoggedIn())?(<Link className="black-text"  to="/login">Log In</Link>):('')
@@ -56,7 +55,7 @@ class Navigation extends React.Component{
                                     <li>
                                     {
                                         (isLoggedIn()) ? (<a className="dropdown-button black-text" href="#!" data-activates="dropdown1">
-                                            djcranker
+                                            {this.props.authUser ? this.props.authUser.username :''}
                                             <i className="material-icons right">arrow_drop_down</i></a>):('')
                                     }
                                     </li>

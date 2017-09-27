@@ -21,7 +21,7 @@ export function requireAuth(nextState, replace) {
 }
 export function noRequireAuth(nextState,replace){
     if(isLoggedIn()){
-      replace({pathname:'/'});
+      replace({pathname:'/dashboard'});
     }
 }
 export function clearAccessToken(){

@@ -6,7 +6,7 @@ import { transporter } from '../mail/nodemailer';
 
 
 const jwt = require('jsonwebtoken');
-const nodemailer = require('nodemailer');
+// const nodemailer = require('nodemailer');
 const randomstring = require('randomstring');
 /* eslint-disable import/no-extraneous-dependencies */
 const md5 = require('md5');
@@ -58,7 +58,7 @@ export default {
         email: req.body.email,
         password: md5(req.body.password)
       })
-      .then(user => res.status(200).send({
+      .then(user => res.status(201).send({
         message: 'Signup successful',
         username: user.username,
         email: user.email,
@@ -86,7 +86,9 @@ export default {
       .findOne({ where: {
         username: req.body.username, password: md5(req.body.password)
       },
-      include: [{ all: true }]
+      attributes: {
+        exclude: ['password,resetPassToken,expirePassToken']
+      }
       })
       .then((user) => {
         // Checks to see if the user exist//
@@ -102,7 +104,7 @@ export default {
         return res.status(200).send({
           message: `Welcome ${user.username}`,
           token,
-          userGroups: user.userGroups // remove later
+          user
         });
       })
       .catch(error => res.status(400).send(error));
@@ -271,17 +273,18 @@ export default {
     userHelper.userEmailExist(email)
       .then((user) => {
         if (!user) {
-          return res.status(404).send({
+          return res.status(400).send({
             message: 'User does not exist in our records'
           });
         }
 
         const token = randomstring.generate();
-        console.log(token);
+        const expiryDate = Date.now() + 360000;
+
         // updates the user details with tokena and expiry date
         user.update({
           resetPassToken: token,
-          expirePassToken: Date.now() + 360000
+          expirePassToken: expiryDate
         }).then((updatedUser) => {
           const mailOptions = {
             from: '"Post It" <noreply@postit.com',
@@ -289,7 +292,7 @@ export default {
             subject: 'PostIt test',
             text: `Hello Aaron! 
                 The link to reset your password is below
-                http://localhost:3000/api/user/password_reset?token=${token}`
+                http://localhost:8080/reset/password/${token}`
           };
 
           transporter.sendMail(mailOptions, (error, info) => {

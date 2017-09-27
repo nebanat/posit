@@ -16,16 +16,13 @@ class PasswordReset extends React.Component
         
         alert('touched')
 
-        // if(password!==password_confirm){
-        //     alert('password do not match');
-        // }
-        //alert('Password match');
+        // check if  
 
         this.refs.reset_form.reset();
     }
     render()
     {
-       
+      
         return(
             <div>
                 <Navigation/>

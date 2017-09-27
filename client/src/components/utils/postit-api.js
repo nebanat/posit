@@ -11,7 +11,10 @@ export { getUserGroups,
    getGroupUsers,
    getSearchedUsers,
    addUserToGroup,
-   getSearchedUsersNotInAGroup };
+   getSearchedUsersNotInAGroup,
+   loginUser,
+   registerUser,
+   sendResetPasswordLink  };
 
 function getUserGroups() {
   return axios({
@@ -133,6 +136,48 @@ function addUserToGroup(groupId,userId) {
       userId: userId,
     })
   });
+}
+
+function loginUser(username,password){
+   return axios({
+      method: 'post',
+      url: 'http://localhost:3000/api/user/signin',
+      headers:{
+          'Content-type':'application/json; charset=utf-8'
+      },
+      data:JSON.stringify({
+      "username":username,
+      "password":password
+        }) 
+    })
+}
+
+function registerUser(username,email,password){
+    return axios({
+        method: 'post',
+        url: 'http://localhost:3000/api/user/signup',
+        headers:{
+            'Content-type':'application/json; charset=utf-8'
+        },
+        data:JSON.stringify({
+        "username": username,
+        "email": email,
+        "password":password
+          }) 
+      })
+}
+
+function sendResetPasswordLink(email){
+  return axios({
+      method: 'post',
+      url: 'http://localhost:3000/api/user/password/reset',
+      headers:{
+          'Content-type':'application/json; charset=utf-8'
+      },
+      data:JSON.stringify({
+        "email": email,
+      }) 
+    })
 }
 
 

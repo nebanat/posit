@@ -2,7 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App.jsx'
 import Login from './components/auth/Login.jsx'
-import ResetPassword from './components/auth/ResetPassword.js'
+import AuthLogin from './components/auth/AuthLogin.js'
+import AuthRegister from './components/auth/AuthRegister.js'
+import AuthResetPassword from './components/auth/AuthResetPassword.js'
+import AuthPasswordReset from './components/auth/AuthPasswordReset.js'
 import PasswordReset from './components/auth/PasswordReset.jsx'
 import Register from './components/auth/Register.jsx'
 import { Router, Route,IndexRoute,browserHistory } from 'react-router';
@@ -28,7 +31,7 @@ const Root = () => {
     <div>
         <Provider store={store}>
             <Router history={history}>
-                <Route path="/" component={App} onEnter={requireAuth}>
+                <Route path="/dashboard" component={App} onEnter={requireAuth}>
                    <IndexRoute component={Default}></IndexRoute>
                    <Route path='/groups' component={AuthUserGroups}></Route>
                    <Route path='/message' component={NewMessage}></Route>
@@ -39,10 +42,10 @@ const Root = () => {
                    <Route path="/password_reset" component={PasswordReset} onEnter={noRequireAuth}/>
                 </Route>
 
-                <Route path="/login" component={Login} onEnter={noRequireAuth}/>
-                <Route path="/register" component={Register} onEnter={noRequireAuth}/>
-                <Route path="/password/reset" component={ResetPassword} onEnter={noRequireAuth}/>
-                <Route path="/password_reset" component={PasswordReset} onEnter={noRequireAuth}/>
+                <Route path="/login" component={AuthLogin} onEnter={noRequireAuth}/>
+                <Route path="/register" component={AuthRegister} onEnter={noRequireAuth}/>
+                <Route path="/password/reset" component={AuthResetPassword} onEnter={noRequireAuth}/>
+                <Route path="/reset/password/:token" component={AuthPasswordReset} onEnter={noRequireAuth}/>
                 <Route path="/home" component={Home}/>
                 
             </Router>

@@ -4,71 +4,30 @@ import ReactDOM from 'react-dom';
 import Navigation from '../navigation/Navigation.jsx'
 import { Router,Link,Redirect,browserHistory } from 'react-router';
 import axios from 'axios';
+import { registerUser } from '../utils/postit-api.js'
 
 class Register extends React.Component{
    constructor(props){
        super(props)
        this.registerUser=this.registerUser.bind(this);
-      
-
-       this.state={
-           validationMessage:'',
-           successMessage:'',
-           show:false,
-       }
-
-   }
+    
+}
     
    registerUser(e){
        e.preventDefault();
-       //validations
-       if(!this.refs.username.value){
-            this.setState({validationMessage:'Please enter username'});
-            return;
-        }
-        else if(!this.refs.email.value){
-            this.setState({validationMessage:'Please enter Email'});
-            return;
-        }
-        else if(!this.refs.password.value){
-            this.setState({validationMessage:'Please enter password'});
-            return;
-        }
-        else if(this.refs.password.value.length < 8){
-            this.setState({validationMessage:'Password must be at least'});
-            return;
-        }
-        else if(this.refs.password.value!==this.refs.cpassword.value){
-           this.setState({validationMessage:"password fields must match "});
-           return 
-       }
-        
+       let username = this.refs.username.value;
+       let email = this.refs.email.value;
+       let password = this.refs.password.value;
        
-       axios({
-        method: 'post',
-        url: 'http://localhost:3000/api/user/signup',
-        headers:{
-            'Content-type':'application/json; charset=utf-8'
-        },
-         data:JSON.stringify({
-         "username": this.refs.username.value,
-         "email": this.refs.email.value,
-         "password":this.refs.password.value
-          }) 
-        })
-        .then((response)=> {
-            this.setState({successMessage:response.data.message});
-        })
-        .catch((error)=> {
-         this.setState({validationMessage:error.message});
-        });
+       this.props.signUpUser(username,email,password);
     }
 
-   componentDidMount(){
-     
-        
+    componentWillMount(){
+        this.props.signUpUserSuccess('');
+        this.props.signUpUserError('');
     }
-    render(){
+
+   render(){
         return(
            <div>
                 <Navigation/>
@@ -81,10 +40,10 @@ class Register extends React.Component{
                             
                             <div className="card">
                                 <div className="card-content">
-                                    <p className='red-text center col s12'>{this.state.successMessage ? '   ':this.state.validationMessage}</p><br/>
+                                    <p className='red-text center col s12'>{(this.props.registerErrorMessage && !this.props.registerSuccessMessage) ? this.props.registerErrorMessage:''}</p><br/>
                                     <p className='green-text center col s12'>
-                                    {this.state.successMessage}
-                                    <span><Link to='/login'>{this.state.successMessage ? ' Login here' : ' '}</Link></span></p>
+                                    {(this.props.registerSuccessMessage) ? this.props.registerSuccessMessage:''}
+                                    <span><Link to='/login'>{this.props.registerSuccessMessage ? ' Login here' : ' '}</Link></span></p>
                                     <br/>
                                     <span className="card-title center">Register</span>
                                     <form onSubmit={this.registerUser}>

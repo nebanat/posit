@@ -11,7 +11,8 @@ function mapStateToProps(state) {
     users: state.users,
     groupIsLoading: state.groupIsLoading,
     groupUsers: state.groupUsers,
-    searchUsers: state.searchUsers
+    searchUsers: state.searchUsers,
+    authUser: state.authUser,
   };
 }
 

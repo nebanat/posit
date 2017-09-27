@@ -14,7 +14,7 @@ class SideNav extends Component
                     <h3 className="white-text">PostIt</h3>
                     
                         <li className="bold">
-                            <Link to="/" className="white-text">Dashboard</Link>
+                            <Link to="/dashboard" className="white-text">Dashboard</Link>
                             <Link to="/groups" className="white-text">Your Groups</Link>
                             <Link to="/message" className="white-text">New Message</Link>
                             <Link to="/test" className="white-text">Tester</Link>

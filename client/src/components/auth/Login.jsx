@@ -1,4 +1,3 @@
-/*eslint-disable */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Navigation from '../navigation/Navigation.jsx'
@@ -11,37 +10,18 @@ class Login extends React.Component{
        super(props)
        this.signInUser=this.signInUser.bind(this);
 
-       this.state={
-           successMessage:'',
-           validationMessage:''
-       }
+       
    }
    
    signInUser(e){
     e.preventDefault();
-    //axios backend call
-     axios({
-        method: 'post',
-        url: 'http://localhost:3000/api/user/signin',
-        headers:{
-            'Content-type':'application/json; charset=utf-8'
-        },
-         data:JSON.stringify({
-         "username": this.refs.username.value,
-         "password":this.refs.password.value
-          }) 
-        })
-        .then((response)=> {
-           localStorage.setItem('POSTIT_ACCESS_TOKEN',response.data.token)
-           browserHistory.push({
-               pathname:'/',
-            });
-        })
-        .catch((error)=> {
-            //when things go south//
-            this.setState({validationMessage:"Invalid username or password"})
-        });
-    }
+    let username = this.refs.username.value;
+    let password = this.refs.password.value;
+    
+    //dispatches the login action 
+    this.props.logUserIn(username,password)
+        
+}
 
    
 
@@ -57,8 +37,9 @@ class Login extends React.Component{
                         <div className="col s12 m6 offset-m3">
                             <div className="card">
                                 <div className="card-content">
-                                    <p className='green-text center'>{this.state.successMessage}</p>
-                                    <p className='red-text center'>{this.state.validationMessage}</p>
+                                    <p className='red-text center'>{
+                                        this.props.loginErrorMessage ? this.props.loginErrorMessage:''}
+                                    </p><br/>
                                     <span className="card-title center">Sign In </span>
                                     <form onSubmit={this.signInUser}>
                                         <div className='row'>
