@@ -2,8 +2,7 @@ language: node_js
 node_js:
     - "6"
 before_script:
-    - createuser -U postgres -s andeladeveloper -w root234
-    - createdb postit-test  --username=andeladeveloper
+    - createdb postit-test  --username=postgres
 script: npm test
 after_success:
     -npm run coveralls
