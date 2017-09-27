@@ -3,8 +3,8 @@ node_js:
     - "6"
 before_script:
     - npm install sequelize-cli -g
-    - psql -c "CREATE DATABASE postit-test;" -U postgres
-    - sequelize db:migrate --env test
+    - createdb postit-test --username=postgres
+    - sequelize db:migrate 
 script: npm test
 after_success:
     -npm run coveralls
