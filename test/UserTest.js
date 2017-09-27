@@ -71,7 +71,7 @@ describe('User model and routes', () => {
           password: 'testpassword2'
         })
         .end((err, res) => {
-          res.should.have.status(200);
+          res.should.have.status(201);
           res.body.message.should.be.eql('Signup successful');
           res.body.username.should.be.eql('testuser');
           res.body.email.should.be.eql('testuseremail@gmail.com');
