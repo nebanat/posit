@@ -2,7 +2,9 @@ language: node_js
 node_js:
     - "6"
 before_script:
-    - createdb postit-test  --username=postgres
+    - npm install sequelize-cli -g
+    - createdb postit-test  --username=postgres,
+    - sequelize db:migrate --env test
 script: npm test
 after_success:
     -npm run coveralls
