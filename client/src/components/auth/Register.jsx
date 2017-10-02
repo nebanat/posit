@@ -1,4 +1,3 @@
-/*eslint-disable */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Navigation from '../navigation/Navigation.jsx'
@@ -13,8 +12,8 @@ class Register extends React.Component{
     
 }
     
-   registerUser(e){
-       e.preventDefault();
+   registerUser(event){
+       event.preventDefault();
        let username = this.refs.username.value;
        let email = this.refs.email.value;
        let password = this.refs.password.value;

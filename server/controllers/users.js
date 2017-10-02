@@ -1,19 +1,21 @@
 import decode from 'jwt-decode';
+import jwt from 'jsonwebtoken';
+import md5 from 'md5';
 import 'url-search-params-polyfill';
 import models from '../models';
 import userHelper from '../helpers/user';
 import { transporter } from '../mail/nodemailer';
 
-
-const jwt = require('jsonwebtoken');
-// const nodemailer = require('nodemailer');
 const randomstring = require('randomstring');
-/* eslint-disable import/no-extraneous-dependencies */
-const md5 = require('md5');
 
 
 export default {
-  // Sign a user method
+  /**
+   * 
+   * @param {req} req 
+   * @param {res} res
+   * @return {user} user model instance 
+   */
   signUp(req, res) {
     // validates username, email,phone and password
     if (!req.body.username) {
@@ -69,7 +71,12 @@ export default {
   },
 
 
-  // signin user method
+  /**
+   * 
+   * @param {req} req 
+   * @param {res} res
+   * @return {object} user,message,token
+   */
   signIn(req, res) {
     // validates user entries
     if (!req.body.username) {
@@ -109,7 +116,12 @@ export default {
       })
       .catch(error => res.status(400).send(error));
   },
-  // list all registered users//
+  /**
+   * 
+   * @param {req} req 
+   * @param {res} res
+   * @return {users} all user model instances 
+   */
   list(req, res) {
     // Extraneous method that returns users with all relationship //
     return models.User
@@ -121,7 +133,12 @@ export default {
   },
 
 
-  // gets authenticated user groups 
+  /**
+   * 
+   * @param {req} req 
+   * @param {res} res
+   * @return {groups} authenticated user groups 
+   */
   getAuthUserGroups(req, res) {
     const id = req.body.id || req.query.id || req.headers['id-token'];
 

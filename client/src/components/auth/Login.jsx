@@ -13,8 +13,8 @@ class Login extends React.Component{
        
    }
    
-   signInUser(e){
-    e.preventDefault();
+   signInUser(event){
+    event.preventDefault();
     let username = this.refs.username.value;
     let password = this.refs.password.value;
     
@@ -79,8 +79,7 @@ class Login extends React.Component{
 
                 </div>
                 <br/><br/><br/><br/><br/>
-
-                </div>
+               </div>
                 
                 
            </div>

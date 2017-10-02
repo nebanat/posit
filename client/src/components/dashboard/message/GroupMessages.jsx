@@ -1,4 +1,3 @@
-/*eslint-disable */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Collapsible, CollapsibleItem } from 'react-materialize';
@@ -25,8 +24,6 @@ class GroupMessages extends React.Component{
             id);
         
         const group = this.props.groups[i];
-
-        //console.log(group.name);
 
         return (
             <div>

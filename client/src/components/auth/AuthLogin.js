@@ -1,16 +1,26 @@
-/* eslint-disable */
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/actionCreators';
 import Login from './Login.jsx';
 
+/**
+ * 
+ * @param {state} state 
+ * @return {state} state
+ */
 function mapStateToProps(state) {
+  const { groupIsLoading, loginErrorMessage } = state;
   return {
-    groupIsLoading: state.groupIsLoading,
-    loginErrorMessage: state.loginErrorMessage
-    };
+    groupIsLoading,
+    loginErrorMessage
+  };
 }
 
+/**
+ * 
+ * @param {dispatch} dispatch 
+ * @return {bindActionCreator} bindActionCreator
+ */
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(actionCreators, dispatch);
 }

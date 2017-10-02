@@ -1,6 +1,5 @@
-/*eslint-disable */
 import React from 'react';
-import {Link} from 'react-router'
+import { Link } from 'react-router'
 
 class SingleUser extends React.Component
 {
