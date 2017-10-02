@@ -1,4 +1,3 @@
-/*eslint-disable */
 import React from 'react';
 import {Link} from 'react-router';
 import 'url-search-params-polyfill';

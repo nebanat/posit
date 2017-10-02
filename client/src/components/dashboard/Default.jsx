@@ -1,11 +1,9 @@
-/*eslint-disable */
 import React from 'react';
 
 class Default extends React.Component{
     
     render(){
-        //const {users}= this.props
-        //console.log(users)
+   
         return(
            <div>
                 <h2>PostIt Home</h2>
@@ -17,7 +15,6 @@ class Default extends React.Component{
                                 </li>
                              )
                     }
-                    
                     
                 </ul>
             </div>

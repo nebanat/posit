@@ -1,6 +1,4 @@
-/*eslint-disable */
 import React,{Component} from 'react';
-//import Initialize from '../Initialize.js';
 import { Link,browserHistory } from 'react-router';
 
 class SideNav extends Component

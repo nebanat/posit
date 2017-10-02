@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Router, Route,IndexRoute,browserHistory } from 'react-router';
+import {Provider} from 'react-redux'
+import { syncHistoryWithStore } from 'react-router-redux';
 import App from './components/App.jsx'
 import Login from './components/auth/Login.jsx'
 import AuthLogin from './components/auth/AuthLogin.js'
@@ -8,10 +11,7 @@ import AuthResetPassword from './components/auth/AuthResetPassword.js'
 import AuthPasswordReset from './components/auth/AuthPasswordReset.js'
 import PasswordReset from './components/auth/PasswordReset.jsx'
 import Register from './components/auth/Register.jsx'
-import { Router, Route,IndexRoute,browserHistory } from 'react-router';
 import { requireAuth,noRequireAuth } from './components/utils/AuthService';
-import {Provider} from 'react-redux'
-import { syncHistoryWithStore } from 'react-router-redux';
 import * as actionCreators from './actions/actionCreators'
 import * as groupActions from './actions/groupActions'
 import Default from './components/dashboard/Default.jsx'

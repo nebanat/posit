@@ -1,4 +1,3 @@
-/*eslint-disable */
 import React from 'react';
 import {Collapsible,CollapsibleItem} from 'react-materialize'
 

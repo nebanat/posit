@@ -1,20 +1,12 @@
-const express = require('express');
-const path = require('path');
-// const favicon = require('serve-favicon');
-const logger = require('morgan');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const md5 = require('md5');
-// const bcrypt = require('bcrypt');
-const session = require('express-session');
-const jwt = require('jsonwebtoken');
-const nodemailer = require('nodemailer');
-const randomstring = require('randomstring')
-
-const index = require('./routes/index');
-const users = require('./routes/users');
-const groups = require('./routes/groups');
-const cors = require('cors');
+import express from 'express';
+import path from 'path';
+import logger from 'morgan';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import index from './routes/index';
+import users from './routes/users';
+import groups from './routes/groups';
 
 const app = express();
 
@@ -22,15 +14,12 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-// uncomment after placing your favicon in /public
-// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
 
-app.use(session({ secret: 'fgdhdhd93938sshs', resave: false, saveUninitialized: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);

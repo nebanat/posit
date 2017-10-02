@@ -1,3 +1,3 @@
 module.exports = {
-  secret: 'andelapostitapp',
+  secret: process.env.SECRET,
 };

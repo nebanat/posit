@@ -1,4 +1,3 @@
-/*eslint-disable */
 import React from 'react';
 import ReactDOM from 'react';
 import {Button,Input} from 'react-materialize';
@@ -14,7 +13,7 @@ class NewMessage extends React.Component{
         let priority = document.getElementById('priority').value;
         let groupId = document.getElementById('group').value;
 
-        //alert(groupId);
+        // creates message
         this.props.createMessage(message,priority,groupId);
 
         this.refs.messageForm.reset();

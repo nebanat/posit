@@ -1,10 +1,8 @@
-/*eslint-disable */
 import React from 'react';
 import SideNav from '../navigation/SideNav.jsx';
 import Navigation from '../navigation/Navigation.jsx'
 import { getSearchedUser } from '../utils/postit-api'
 import Loader from '../loader/Loader.jsx'
-
 
 
 class Dashboard extends React.Component{
@@ -19,10 +17,6 @@ class Dashboard extends React.Component{
     {
         this.loadData();
 
-        // getSearchedUser('Aa').then(response=>{
-        //     console.log(response.data)
-        // })
-       
     }
    
     render(){
