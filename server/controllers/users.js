@@ -159,7 +159,12 @@ export default {
       })
       .catch(error => res.status(402).send(error));
   },
-  // gets another user(not auth) groups 
+  /**
+   * 
+   * @param {req} req 
+   * @param {res} res 
+   * @return {groups} user groups
+   */
   getUserGroups(req, res) {
     // this will return a user group
     const userId = req.params.id;
@@ -177,8 +182,11 @@ export default {
       });
   },
   /**
-   * Get authenticated user messages
-   */
+  * 
+  * @param {req} req 
+  * @param {res} res 
+    @return {messages} authenticated user messages
+  */
 
   getAuthUserMessages(req, res) {
     const token = req.body.token || req.query.token || req.headers['x-access-token'];
@@ -199,7 +207,12 @@ export default {
       });
   },
 
-  // gets user messagdes
+  /**
+   * 
+   * @param {req} req 
+   * @param {res} res
+   * @return {messages} user messages 
+   */
   getUserMessages(req, res) {
     const userId = req.params.id;
 
@@ -243,7 +256,12 @@ export default {
     });
   },
 
-  // search and add users not in a group
+  /**
+   * 
+   * @param {req} req 
+   * @param {res} res
+   * @return {user} user 
+   */
   searchUsersNotInAGroup(req, res) {
     const groupId = req.body.groupId;
     const query = req.body.query;
@@ -284,6 +302,12 @@ export default {
         });
       });
   },
+  /**
+   * 
+   * @param {req} req 
+   * @param {res} res
+   * @return {email} email 
+   */
   sendResetPasswordEmail(req, res) {
     const email = req.body.email;
 
@@ -326,6 +350,12 @@ export default {
         });
       });
   },
+  /**
+   * 
+   * @param {req} req 
+   * @param {res} res
+   * @return {email} password reset email 
+   */
   resetPassword(req, res) {
     const resetToken = req.body.resetToken;
     const expiryDate = Date.now() - req.body.expiryDate;
